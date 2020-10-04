@@ -38,7 +38,7 @@ public class MetodosLogin {
         try{
             //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
             
-            stmt = conn.prepareCall("{call  TIENDAGG.sp_LoginVerification (?,?,?)}");
+            stmt = conn.prepareCall("{call  TIENDAGG.sp_LoginVerif (?,?,?)}");
             stmt.setString(1, user);
             stmt.setString(2, password);
             stmt.registerOutParameter(3, OracleTypes.CURSOR);
@@ -47,7 +47,6 @@ public class MetodosLogin {
             while(rs.next()){
                 Login loginBD = new Login(rs.getString("correo"),rs.getString("contrasena"), rs.getInt("id_usuario") );
                 arreglo.add(loginBD);
-                System.out.println(rs.getString("correo")+" "+rs.getString("contrasena")+ rs.getInt("id_usuario"));
             }
             stmt.close();
             

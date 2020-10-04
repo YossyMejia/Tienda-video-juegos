@@ -71,7 +71,6 @@ public class MetodosCategoria {
                 Categoria categoria = new Categoria(nombre,descripcion, id);
                 
                 arreglo.add(categoria);
-                System.out.println(nombre + descripcion);
             }
             
             stmt.close();

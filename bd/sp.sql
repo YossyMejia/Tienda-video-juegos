@@ -3,7 +3,7 @@ ALTER SESSION SET CURRENT_SCHEMA = TIENDAGG
 
 --Procedimiento para obtener los datos de un login
 create or replace
-PROCEDURE sp_LoginVerification
+PROCEDURE sp_LoginVerif
 (in_correo IN login.correo%TYPE,
  in_contrasena IN login.contrasena%TYPE,
  out_cursor_login OUT SYS_REFCURSOR
@@ -11,10 +11,10 @@ PROCEDURE sp_LoginVerification
 AS
 BEGIN
   OPEN out_cursor_login FOR
-  SELECT l.correo, l.contrasena
-  FROM login l
-  WHERE l.correo = in_correo and l.contrasena = in_contrasena;
-  
+  SELECT l.correo, l.contrasena, u.id_usuario
+  FROM login l 
+  INNER JOIN usuario u on l.id_usuario=u.id_usuario
+  WHERE l.correo = in_correo and l.contrasena = in_contrasena;                              --cerrar cursores
 END;
 
 
@@ -30,7 +30,6 @@ BEGIN
   SELECT l.correo
   FROM login l
   WHERE l.correo = in_correo;
-  
 END;
 
 
@@ -120,15 +119,12 @@ PROCEDURE sp_postProducto
  in_descripcion IN producto.descripcion_producto%TYPE,
  in_precio IN producto.precio%TYPE,
  in_cantidad IN producto.cantidad%TYPE,
- in_categoria IN categoria.nombre_cat%TYPE
+ in_categoria IN categoria.id_categoria%TYPE
 )
 AS
-var_categoria_id categoria.id_categoria%TYPE;
 BEGIN
-  SELECT c.id_categoria INTO var_categoria_id
-  FROM categoria c WHERE c.nombre_cat = in_categoria;
   INSERT INTO producto(id_producto, nombre_producto, descripcion_producto, precio, cantidad, id_categoria)
-  VALUES (in_id, in_nombre, in_descripcion, in_precio, in_cantidad, var_categoria_id);
+  VALUES (in_id, in_nombre, in_descripcion, in_precio, in_cantidad, in_categoria);
 END;
 
 
@@ -145,5 +141,76 @@ BEGIN
 END;
 
 
+--Procedimiento para modificar un producto
+create or replace
+PROCEDURE sp_putProducto
+(in_id IN producto.id_producto%TYPE,
+ in_nombre IN producto.nombre_producto%TYPE,
+ in_precio IN producto.precio%TYPE,
+ in_cantidad IN producto.cantidad%TYPE
+)
+AS
+BEGIN
+  UPDATE producto SET nombre_producto = in_nombre, precio = in_precio, cantidad = in_cantidad
+  WHERE id_producto = in_id;
+END;
 
+--Procedimiento para crear una solicitud
+create or replace
+PROCEDURE sp_postSolicitud
+(
+ in_usuario IN solicitudtecnica.id_usuario%TYPE,
+ in_descripcion IN solicitudtecnica.descripcion%TYPE,
+ in_fecha_solicitud IN solicitudtecnica.fecha_solicitud%TYPE
+)
+AS
+BEGIN
+  INSERT INTO solicitudTecnica(id_usuario, descripcion, fecha_solicitud)
+  VALUES (in_usuario, in_descripcion, in_fecha_solicitud);
+END;
+
+
+--Procedimiento para obtener solicitudes que aun no se responden
+create or replace
+PROCEDURE sp_getSolicitudes
+ (out_cursor_solicitudes OUT SYS_REFCURSOR)
+AS
+BEGIN   
+  OPEN out_cursor_solicitudes FOR
+  SELECT *
+  FROM solicitudTecnica soli
+  LEFT JOIN soluciontecnica solu
+  ON soli.id_solicitudtecnica = solu.id_solicitud
+  WHERE solu.id_solicitud IS NULL;
+END;
+
+
+--Procedimento para crear respuestas a solicitudes
+create or replace
+PROCEDURE sp_postSolucion
+(
+ in_tecnico IN solucionTecnica.id_tecnico%TYPE,
+ in_respuesta IN solucionTecnica.respuesta%TYPE,
+ in_fecha_solicitud IN soluciontecnica.fecha_solucion%TYPE,
+ in_id_solicitud IN soluciontecnica.id_solicitud%TYPE
+)
+AS
+BEGIN
+  INSERT INTO soluciontecnica(id_tecnico, respuesta, fecha_solucion, id_solicitud)
+  VALUES (in_tecnico, in_respuesta, in_fecha_solicitud, in_id_solicitud);
+END;
+
+
+--Procedimento para obtener las soluciones que tienen respuestas 
+create or replace
+PROCEDURE sp_getSolicitudesSoluciones
+ (out_cursor_solicitudesSoluciones OUT SYS_REFCURSOR)
+AS
+BEGIN
+  OPEN out_cursor_solicitudesSoluciones FOR
+  SELECT s.id_usuario, s.descripcion, so.id_tecnico, so.respuesta 
+  FROM solicitudTecnica s
+  INNER JOIN soluciontecnica so
+  ON s.id_solicitudtecnica = so.id_solicitud;
+END;
 

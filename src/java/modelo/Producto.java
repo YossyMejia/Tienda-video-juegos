@@ -36,6 +36,8 @@ public class Producto {
         this.nombreCategoria = nombreCategoria;
     }
 
+    
+    
     public int getCodigo() {
         return codigo;
     }

@@ -39,3 +39,8 @@ select * from categoria;
 
 --Producto
 select * from producto;
+
+--Solicitud
+select * from solicitudtecnica
+
+select * from solucionTecnica

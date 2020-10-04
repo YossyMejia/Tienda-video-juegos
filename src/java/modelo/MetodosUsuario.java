@@ -82,7 +82,6 @@ public class MetodosUsuario {
                                               tipo_usuario);
                 
                 arreglo.add(usuario);
-                System.out.println(id_user + nombre_usuario + primer_apellido + segundo_apellido + tipo_usuario);
             }
             
             stmt.close();
@@ -115,7 +114,6 @@ public class MetodosUsuario {
                                               segundo_apellido,tipo, correo);
                 
                 arreglo.add(usuario);
-                System.out.println(nombre_usuario + primer_apellido + segundo_apellido + tipo + correo);
             }
             
             stmt.close();

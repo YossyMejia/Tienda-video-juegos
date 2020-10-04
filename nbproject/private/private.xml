@@ -3,26 +3,46 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/AdmProductosView.jsp</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/CrearCategoriasView.jsp</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/MetodosCategoria.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/loginC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/CrearCategoriaC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/DB/ConnectionORCL.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/Productos_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/MetodosUsuario.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/CrearCategorias_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/index.jsp</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/RegistroC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/AdmUsuariosC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/CrearProductoView.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Principal_C.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/Registro_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/MetodosProductos.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/AdmCategoriasView.jsp</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/AdminView.jsp</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/CrearProductoC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/AdmProductosC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/AdmUsuariosView.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/CrearSolicitud_C.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/SoportePrincipal_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/CrearSolicitud_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/ResolverSolicitud_S.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Usuarios_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/Solicitud.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/AdministradorPrincipal_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/Login.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/Categoria.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/AdmCategoriasC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/AdministradorC.java</file>
-            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/RegistroView.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/MetodosLogin.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Principal_S.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/Usuario.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/VerSolicitudes_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/controlador/Controlador.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/EditarProducto_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/MetodosCategoria.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Principal_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Productos_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Categorias_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Registro.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/Producto.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/Usuarios_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/ResolverSolicitud_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/modelo/MetodosSolicitud.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/CrearProducto_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/Categorias_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/CrearProducto_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/CrearUsuario_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/EditarProducto_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/Login_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/src/java/vistas/ClientePrincipal_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/VerSolicitudes_S.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/web/Solicitudes_A.jsp</file>
         </group>
     </open-files>
 </project-private>

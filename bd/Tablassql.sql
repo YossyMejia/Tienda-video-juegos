@@ -177,3 +177,37 @@ ALTER TABLE producto ADD CONSTRAINT producto_pk PRIMARY KEY ( id_producto );
 ALTER TABLE producto
     ADD CONSTRAINT productoxcategoria_fk FOREIGN KEY ( id_categoria )
         REFERENCES categoria ( id_categoria );
+        
+        
+--Tabla solicitud
+CREATE TABLE solicitudTecnica(
+    id_solicitudTecnica      NUMBER GENERATED ALWAYS AS IDENTITY,
+    id_usuario            NUMBER NOT NULL,
+    descripcion           VARCHAR2(400 CHAR) NOT NULL,
+    fecha_solicitud       VARCHAR2(50 CHAR) NOT NULL
+);
+
+ALTER TABLE solicitudTecnica ADD CONSTRAINT solicitudTecnica_pk PRIMARY KEY ( id_solicitudTecnica );
+
+
+ALTER TABLE solicitudTecnica
+    ADD CONSTRAINT solicitudtxcliente_fk FOREIGN KEY ( id_usuario )
+        REFERENCES usuario ( id_usuario );
+    
+        
+        
+CREATE TABLE solucionTecnica(
+    id_solucionTecnica    NUMBER GENERATED ALWAYS AS IDENTITY,
+    id_tecnico            NUMBER NOT NULL,
+    respuesta             VARCHAR2(400 CHAR) NOT NULL,
+    fecha_solucion        VARCHAR2(50 CHAR) NOT NULL,
+    id_solicitud          NUMBER NOT NULL
+);
+
+ALTER TABLE solucionTecnica ADD CONSTRAINT solucionTecnica_pk PRIMARY KEY ( id_solucionTecnica );
+
+ALTER TABLE solucionTecnica
+    ADD CONSTRAINT solucionTecnicaxtecnico_fk FOREIGN KEY ( id_tecnico )
+        REFERENCES usuario ( id_usuario );
+    
+      

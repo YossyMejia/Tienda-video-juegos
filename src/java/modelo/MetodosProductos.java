@@ -31,19 +31,19 @@ public class MetodosProductos {
     
     public boolean postProducto(int codigo, String nombre, String descripcion, 
                                      int precio, int cantidad, 
-                                     String nombreCategoria){
+                                     int idCategoria){
         
         boolean exito_operacion;
         try{
             //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
-            System.out.println(codigo+nombre+descripcion+precio+cantidad+nombreCategoria);
+            System.out.println(codigo+nombre+descripcion+precio+cantidad+idCategoria);
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postProducto (?,?,?,?,?,?)}");
             stmt.setInt(1, codigo);
             stmt.setString(2, nombre);
             stmt.setString(3, descripcion);
             stmt.setInt(4, precio);
             stmt.setInt(5, cantidad);
-            stmt.setString(6, nombreCategoria);
+            stmt.setInt(6, idCategoria);
             stmt.execute();
             stmt.close();
             exito_operacion = true;
@@ -85,4 +85,26 @@ public class MetodosProductos {
         return arreglo;
     }
     
+    public boolean putProducto(int codigo, String nombre ,int precio, int cantidad){
+        
+        boolean exito_operacion;
+        try{
+            //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
+            System.out.println(codigo+nombre+precio+cantidad);
+            stmt = conn.prepareCall("{call  TIENDAGG.sp_putProducto (?,?,?,?)}");
+            stmt.setInt(1, codigo);
+            stmt.setString(2, nombre);
+            stmt.setInt(3, precio);
+            stmt.setInt(4, cantidad);
+            stmt.execute();
+            stmt.close();
+            exito_operacion = true;
+            //FIN SP
+        }
+        catch(Exception e){ 
+            System.out.println("ERROR: No se puede completar la operacion "+e);
+            exito_operacion = false;
+        }
+        return exito_operacion;
+    }
 }
