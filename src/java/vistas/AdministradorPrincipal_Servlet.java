@@ -26,7 +26,7 @@ import modelo.Usuario;
  *
  * @author XPC
  */
-@WebServlet(name = "AdministradorC", urlPatterns = {"/AdministradorC"})
+@WebServlet(name = "AdministradorPrincipal", urlPatterns = {"/AdministradorPrincipal"})
 public class AdministradorPrincipal_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
    

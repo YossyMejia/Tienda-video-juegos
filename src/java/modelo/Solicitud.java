@@ -24,13 +24,23 @@ public class Solicitud {
         this.fecha = fecha;
     }
 
-    public Solicitud(int id_usuario, int id_tecnico, String pregunta, String respuesta ) {
+    public Solicitud(int id, int id_usuario, int id_tecnico, String pregunta, String respuesta ) {
+        this.id = id;
         this.pregunta = pregunta;
         this.id_usuario = id_usuario;
         this.id_tecnico = id_tecnico;
         this.respuesta = respuesta;
     }
 
+    public Solicitud(int id_usuario, int id_tecnico, String pregunta, String respuesta, String fecha) {
+        this.pregunta = pregunta;
+        this.id_usuario = id_usuario;
+        this.id_tecnico = id_tecnico;
+        this.respuesta = respuesta;
+        this.fecha = fecha;
+    }
+    
+    
     
 
     

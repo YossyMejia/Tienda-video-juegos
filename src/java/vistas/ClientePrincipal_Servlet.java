@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "ClienteC", urlPatterns = {"/ClienteC"})
+@WebServlet(name = "ClientePrincipal", urlPatterns = {"/ClientePrincipal"})
 public class ClientePrincipal_Servlet extends HttpServlet {
 
      private Controlador controlador = new Controlador();
@@ -34,6 +34,12 @@ public class ClientePrincipal_Servlet extends HttpServlet {
             throws ServletException, IOException {
        if(request.getParameter("btn_soporte") != null){
            request.getRequestDispatcher("./CrearSolicitud_C.jsp").forward(request, response);
+       }
+       else if(request.getParameter("btn_productos") != null){
+           request.setAttribute("Lista", controlador.obtenerProductos());
+           RequestDispatcher view = request.getRequestDispatcher("Productos_C.jsp");
+           view.forward(request,response);
+           request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
        }
        else if(request.getParameter("btn_salir") != null){
            request.getRequestDispatcher("./index.jsp").forward(request, response);

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "SoporteC", urlPatterns = {"/SoporteC"})
+@WebServlet(name = "Soporte", urlPatterns = {"/Soporte"})
 public class SoportePrincipal_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
    

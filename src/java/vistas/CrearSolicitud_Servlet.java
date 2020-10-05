@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "SolicitarSoporteC", urlPatterns = {"/SolicitarSoporteC"})
+@WebServlet(name = "CrearSolicitud", urlPatterns = {"/CrearSolicitud"})
 public class CrearSolicitud_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
     

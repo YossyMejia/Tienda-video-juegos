@@ -24,7 +24,7 @@ import modelo.Producto;
  *
  * @author XPC
  */
-@WebServlet(name = "CrearProductoC", urlPatterns = {"/CrearProductoC"})
+@WebServlet(name = "CrearProducto", urlPatterns = {"/CrearProducto"})
 public class CrearProducto_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
     

@@ -22,7 +22,7 @@ import modelo.MetodosCategoria;
  *
  * @author XPC
  */
-@WebServlet(name = "AdmProductosC", urlPatterns = {"/AdmProductosC"})
+@WebServlet(name = "Productos", urlPatterns = {"/Productos"})
 public class Productos_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
    

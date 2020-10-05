@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet(name = "loginC", urlPatterns = {"/loginC"})
+@WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
    

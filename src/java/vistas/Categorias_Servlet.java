@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "AdmCategoriasC", urlPatterns = {"/AdmCategoriasC"})
+    @WebServlet(name = "Categorias", urlPatterns = {"/Categorias"})
 public class Categorias_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
    

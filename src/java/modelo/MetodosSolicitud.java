@@ -55,7 +55,6 @@ public class MetodosSolicitud {
         boolean exito_operacion;
         try{
             //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
-            System.out.println(id_tecnico+" "+respuesta+" "+fecha_hora+" "+id_solicitud);
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postSolucion (?,?,?, ?)}");
             stmt.setInt(1, id_tecnico);
             stmt.setString(2, respuesta);
@@ -110,11 +109,12 @@ public class MetodosSolicitud {
             stmt.execute();
             rs = (ResultSet) stmt.getObject(1);
             while(rs.next()){
+                int id_solicitud = rs.getInt("id_solicitudTecnica");
                 int id_usuario = rs.getInt("id_usuario");
                 int id_tecnico = rs.getInt("id_tecnico");
                 String descripcion = rs.getString("descripcion");
                 String respuesta = rs.getString("respuesta");
-                Solicitud solicitud = new Solicitud(id_usuario,id_tecnico,descripcion,respuesta);
+                Solicitud solicitud = new Solicitud(id_solicitud, id_usuario,id_tecnico,descripcion,respuesta);
                
                 arreglo.add(solicitud);
             }
@@ -127,4 +127,36 @@ public class MetodosSolicitud {
         }
         return arreglo;
     }
+    
+    public ArrayList<Solicitud> getDetallesSolicitud(int id){
+        ArrayList<Solicitud> arreglo = new ArrayList();
+        try{
+            //TODO llamar el sp 
+            stmt = conn.prepareCall("{call  TIENDAGG.sp_getSolicitudDetalle (?,?)}");
+            stmt.setInt(1, id);
+            stmt.registerOutParameter(2, OracleTypes.CURSOR);
+            stmt.execute();
+            rs = (ResultSet) stmt.getObject(2);
+            while(rs.next()){
+                int id_usuario = rs.getInt("id_usuario");
+                int id_tecnico = rs.getInt("id_tecnico");
+                String descripcion = rs.getString("descripcion");
+                String respuesta = rs.getString("respuesta");
+                String fecha_solucion = rs.getString("fecha_solucion");
+                
+                Solicitud solicitud = new Solicitud(id_usuario,id_tecnico,descripcion,
+                        respuesta, fecha_solucion);
+               
+                arreglo.add(solicitud);
+            }
+            
+            stmt.close();
+            //FIN SP
+        }
+        catch(Exception e){ 
+            System.out.println("ERROR: No se puede completar la operacion "+e);
+        }
+        return arreglo;
+    }
+    
 }

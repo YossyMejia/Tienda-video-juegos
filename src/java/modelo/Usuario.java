@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import modelo.Carrito;
 /**
  *
  * @author XPC
@@ -18,6 +18,7 @@ public class Usuario {
     
     private String descripcionTipo;
     private String correo;
+    
 
     public Usuario(){
         tipo = 0;   //Inicializa un usuario como tipo invitado sin datos

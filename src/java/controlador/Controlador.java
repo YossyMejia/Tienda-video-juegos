@@ -17,6 +17,7 @@ import modelo.Usuario;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import modelo.Carrito;
 import modelo.MetodosSolicitud;
 import modelo.Solicitud;
 /**
@@ -132,14 +133,28 @@ public class Controlador {
         return lista;
     }
     
-    public ArrayList<Solicitud> obtenerSolicitudDetalle(){                    //Funcion para obtener todas las consultas sin hacer
+    public ArrayList<Solicitud> obtenerSolicitudDetalle(){                    //Funcion para obtener todas las consultas con sus respuestas
         ArrayList<Solicitud> lista = metodosSolicitud.getSolicitudesSoluciones();
         return lista;
     }
     
+    public ArrayList<Solicitud> obtenerDetallesSolicitud(int id){              //Funcion para obtener los detalles de una solicitud
+        ArrayList<Solicitud> lista = metodosSolicitud.getDetallesSolicitud(id);
+        return lista;
+    }
+    
+    public ArrayList<Producto> obtenerProducto(int id){
+        ArrayList<Producto> lista = metodosProducto.getProductoDetalles(id);
+        return lista;
+    }
+        
     public boolean modificarProducto(int id, String nombre, int precio, int cantidad){
         boolean estado = metodosProducto.putProducto(id, nombre, precio, cantidad);
         return estado;
+    }
+    
+    public void aumentarCarrito(int id, int cantidad){
+        usuarioAplicacion.agregarArticuloCarrito(id, cantidad);
     }
     
     public String fechaActual(){

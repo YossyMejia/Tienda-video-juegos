@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "EditarProducto_AC", urlPatterns = {"/EditarProducto_AC"})
+@WebServlet(name = "EditarProducto", urlPatterns = {"/EditarProducto"})
 public class EditarProducto_Servlet extends HttpServlet {
      private Controlador controlador = new Controlador();
    

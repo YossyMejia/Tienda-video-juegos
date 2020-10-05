@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package modelo;
-
+import modelo.Carrito;
 /**
  *
  * @author XPC
@@ -13,6 +13,7 @@ public class Login {
     private String user;
     private String password;
     private int user_id;
+    private Carrito carritoCompras = new Carrito();
     
     public Login(String user, String password, int user_id){
         this.user = user;
@@ -52,6 +53,8 @@ public class Login {
         this.user_id = user_id;
     }
     
-    
+    public void agregarArticuloCarrito(int id, int cantidad){
+        carritoCompras.anadirProducto(id, cantidad);
+    }
     
 }

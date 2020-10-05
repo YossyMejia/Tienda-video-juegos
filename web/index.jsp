@@ -20,7 +20,7 @@
     <body class="bodyb">
         <div class="container">
         <h1>Bienvenido!</h1>
-        <form action="./loginC" method="post">
+        <form action="./Login" method="post">
         <div style="color: #FF0000;">${errorMessage}</div>
             <hr>
             <table class="table table-bordered">
@@ -44,7 +44,7 @@
             </table>
             <button class="btn btn-success btn-sm btn-group-lg"  name="btn_ingresar" value="Ingresar"/>Ingresar</button>
         </form>
-        <form action="./loginC" method="get">
+        <form action="./Login" method="get">
             <button class="btn btn-warning btn-sm btn-group-lg" name="btn_registrarse" value="Registrarse">Registrarse</button>
         </form>
         </div>

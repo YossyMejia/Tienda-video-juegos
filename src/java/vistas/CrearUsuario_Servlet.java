@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "CrearUsuarioC", urlPatterns = {"/CrearUsuarioC"})
+@WebServlet(name = "CrearUsuario", urlPatterns = {"/CrearUsuario"})
 public class CrearUsuario_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
     

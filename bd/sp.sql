@@ -141,6 +141,21 @@ BEGIN
 END;
 
 
+--Procedimiento para obtener los detalles de un producto
+create or replace
+PROCEDURE sp_getProductoDetalles
+ (in_id IN producto.id_producto%TYPE,
+ out_cursor_productos OUT SYS_REFCURSOR)
+AS
+BEGIN   
+  OPEN out_cursor_productos FOR
+  SELECT p.id_producto, p.nombre_producto, p.precio, p.cantidad, c.nombre_cat, p.descripcion_producto
+  FROM producto p
+  INNER JOIN categoria c ON c.id_categoria = p.id_categoria
+  WHERE p.id_producto = in_id;
+END;
+
+
 --Procedimiento para modificar un producto
 create or replace
 PROCEDURE sp_putProducto
@@ -208,9 +223,24 @@ PROCEDURE sp_getSolicitudesSoluciones
 AS
 BEGIN
   OPEN out_cursor_solicitudesSoluciones FOR
-  SELECT s.id_usuario, s.descripcion, so.id_tecnico, so.respuesta 
+  SELECT s.id_solicitudTecnica, s.id_usuario, s.descripcion, so.id_tecnico, so.respuesta 
   FROM solicitudTecnica s
   INNER JOIN soluciontecnica so
   ON s.id_solicitudtecnica = so.id_solicitud;
 END;
 
+
+--Obtener detalles de una solucion
+create or replace
+PROCEDURE sp_getSolicitudDetalle
+ (in_idsolicitud IN solicitudtecnica.id_usuario%TYPE,
+ out_cursor_solicitudesSoluciones OUT SYS_REFCURSOR)
+AS
+BEGIN
+  OPEN out_cursor_solicitudesSoluciones FOR
+  SELECT  s.id_usuario, s.descripcion, so.id_tecnico, so.respuesta, so.fecha_solucion
+  FROM solicitudTecnica s
+  INNER JOIN soluciontecnica so
+  ON s.id_solicitudtecnica = so.id_solicitud
+  WHERE in_idsolicitud = s.id_solicitudTecnica;
+END;
