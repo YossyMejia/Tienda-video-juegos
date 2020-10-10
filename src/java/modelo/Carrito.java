@@ -18,4 +18,21 @@ public class Carrito {
         Producto producto = new Producto(id, cantidad);
         listadoProductos.add(producto);
     }
+    
+    public int getTamano(){
+        return listadoProductos.size();
+    }
+    
+    public int codigoProducto(int producto){
+        return listadoProductos.get(producto).codigo;
+    }
+    
+    public boolean verificarProducto(int id){
+        for(int i=0; i<listadoProductos.size(); i++){
+            if(listadoProductos.get(i).getCodigo() == id){
+                return false;
+            }
+        }
+        return true;
+    }
 }

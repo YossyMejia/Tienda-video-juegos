@@ -42,6 +42,9 @@ public class Productos_Servlet extends HttpServlet {
        else if(request.getParameter("idProducto") != null){
            request.getRequestDispatcher("./EditarProducto_A.jsp").forward(request, response);
        } 
+       else if(request.getParameter("idProductoEliminar") != null){
+           request.getRequestDispatcher("./EliminarProducto_A.jsp").forward(request, response);
+       }
         request.getRequestDispatcher("./Productos_A.jsp").forward(request, response);
     }
 

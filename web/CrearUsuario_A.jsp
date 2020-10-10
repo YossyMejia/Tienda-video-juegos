@@ -10,6 +10,9 @@
 .bodyb { 
  background-color: silver;
 } 
+form {    
+    display: inline;
+}
 </style>
 <html>
     <head>

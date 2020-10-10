@@ -31,7 +31,7 @@ public class MetodosSolicitud {
         
         boolean exito_operacion;
         try{
-            //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
+            //INICIO SP
             System.out.println(id_usuario+" "+descripcion+" "+fecha_hora);
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postSolicitud (?,?,?)}");
             stmt.setInt(1, id_usuario);
@@ -54,7 +54,7 @@ public class MetodosSolicitud {
         
         boolean exito_operacion;
         try{
-            //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
+            //INICIO SP
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postSolucion (?,?,?, ?)}");
             stmt.setInt(1, id_tecnico);
             stmt.setString(2, respuesta);

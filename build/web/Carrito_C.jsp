@@ -1,6 +1,6 @@
 <%-- 
-    Document   : AdminProuctosView
-    Created on : 01/10/2020, 09:57:35 PM
+    Document   : Carrito_C
+    Created on : 04/10/2020, 10:32:49 PM
     Author     : XPC
 --%>
 
@@ -16,9 +16,6 @@
     overflow:scroll;
     height:500px;
 }
-form {    
-    display: inline;
-}
 </style>
 <html>
     <head>
@@ -28,37 +25,35 @@ form {
     </head>
     <body class="bodyb">
         <div class="container">
-            <h1>Administrador de productos</h1>
+            <h1>Detalles de carrito</h1>
             <hr>
-            <form action="./Productos" method="post">
+            <form action="./DetallesCarrito" method="post">
              <div class="scrollit">
+             <div style="color: #FF0000;">${errorMessage}</div>
             <table class="table table-bordered">
                 <tr>
                     <th>Codigo</th>
                     <th class="text-center">Nombre</th>
                      <th class="text-center">Precio</th>
                      <th class="text-center">Cantidad</th>
+                     <th class="text-center">Descripcion</th>
                      <th class="text-center">Categoria</th>
-                     <th class="text-center">Acciones</th>
                 </tr>
                 <%if(request.getAttribute("Lista") != null){ %>
                 <% ArrayList<Producto> lista = (ArrayList<Producto>) request.getAttribute("Lista"); %>
                 <%  for(int i=0; i<lista.size(); i++){ %>
-                <tr>
                     <td><%= lista.get(i).getCodigo()%></td>
                     <td class="text-center"><%= lista.get(i).getNombre()%></td>
                     <td class="text-center"><%= lista.get(i).getPrecio()%></td>
                     <td class="text-center"><%= lista.get(i).getCantidad()%></td>
+                    <td class="text-center"><%= lista.get(i).getDescripcion()%></td>
                     <td class="text-center"><%= lista.get(i).getNombreCategoria()%></td>
-                    <td>
-                        <button class="btn-default" name="idProducto"  value=<%=lista.get(i).getCodigo()%>>Editar</button>
-                        <button class="btn-default btn-danger" name="idProductoEliminar"  value=<%=lista.get(i).getCodigo()%>>Eliminar</button>
-                    </td>
                 </tr> 
                 <%}%>
                <%}%>
             </table>
              </div><br><br><br>
+             <button class="btn-default" name="btn_comprar" value="Comprar"/>Comprar</button>
             <button class="btn-default" name="btn_atras" value="Atras"/>Atras</button>
             </form>
         </div>

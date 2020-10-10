@@ -16,6 +16,9 @@
     overflow:scroll;
     height:500px;
 }
+form {    
+    display: inline;
+}
 </style>
 <html>
     <head>

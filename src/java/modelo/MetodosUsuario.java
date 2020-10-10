@@ -37,7 +37,7 @@ public class MetodosUsuario {
         
         boolean exito_operacion;
         try{
-            //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
+            //INICIO SP
             
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postUser (?,?,?,?,?,?,?)}");
             stmt.setInt(1, id);

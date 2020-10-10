@@ -6,9 +6,11 @@
 package vistas;
 
 import controlador.Controlador;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,6 +21,10 @@ import modelo.Categoria;
 import modelo.MetodosCategoria;
 import modelo.MetodosProductos;
 import modelo.Producto;
+import org.apache.tomcat.util.http.fileupload.FileItem;
+import org.apache.tomcat.util.http.fileupload.RequestContext;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -39,6 +45,8 @@ public class CrearProducto_Servlet extends HttpServlet {
         }
     }
 
+    
+    
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import DB.ConnectionMDB;
 import java.util.ArrayList;
 import modelo.Categoria;
 import modelo.Login;
@@ -148,14 +149,36 @@ public class Controlador {
         return lista;
     }
         
+    public ArrayList<Producto> obtenerProductosCarrito(){
+        ArrayList<Producto> listaFinal = new ArrayList();
+        Carrito carrito = usuarioAplicacion.getCarritoCompras();
+        for(int i=0; i<carrito.getTamano(); i++){
+            int id = carrito.codigoProducto(i);
+            listaFinal.addAll(metodosProducto.getProductoDetalles(id));
+        }
+        return listaFinal;
+    }
+    
+     public ArrayList<Producto> obtenerProductosFiltrados(int precio, String nombreCategoria){
+         ArrayList<Producto> lista = metodosProducto.getProductosFitlrados(precio, nombreCategoria);
+        return lista;
+    }
+    
     public boolean modificarProducto(int id, String nombre, int precio, int cantidad){
         boolean estado = metodosProducto.putProducto(id, nombre, precio, cantidad);
         return estado;
     }
     
-    public void aumentarCarrito(int id, int cantidad){
-        usuarioAplicacion.agregarArticuloCarrito(id, cantidad);
+    public boolean eliminarProducto(int id){
+        boolean estado = metodosProducto.deleteProducto(id);
+        return estado;
     }
+    
+    public boolean aumentarCarrito(int id, int cantidad){
+        boolean estado = usuarioAplicacion.agregarArticuloCarrito(id, cantidad);
+        return estado;
+    }
+    
     
     public String fechaActual(){
         Date objDate = new Date(); 

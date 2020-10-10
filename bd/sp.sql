@@ -155,6 +155,24 @@ BEGIN
   WHERE p.id_producto = in_id;
 END;
 
+--Funcion para filtrar los productos por precio y categoria
+CREATE OR REPLACE
+FUNCTION fn_getProductosFitlrados 
+(in_precio IN producto.precio%TYPE, 
+in_categoria IN categoria.nombre_cat%TYPE) 
+return sys_refcursor
+AS
+   datos_filtrados   sys_refcursor;
+BEGIN
+   OPEN datos_filtrados FOR
+        select p.id_producto, p.nombre_producto, p.precio, p.cantidad, c.nombre_cat
+        from producto p
+        inner join categoria c on p.id_categoria = c.id_categoria
+        WHERE p.precio >= in_precio and trim(upper(c.nombre_cat)) LIKE trim(upper('%' || in_categoria || '%'));
+
+   RETURN datos_filtrados;
+END;
+
 
 --Procedimiento para modificar un producto
 create or replace
@@ -167,6 +185,16 @@ PROCEDURE sp_putProducto
 AS
 BEGIN
   UPDATE producto SET nombre_producto = in_nombre, precio = in_precio, cantidad = in_cantidad
+  WHERE id_producto = in_id;
+END;
+
+--Procedimiento para eliminar un producto
+create or replace
+PROCEDURE sp_deleteProducto
+(in_id IN producto.id_producto%TYPE)
+AS
+BEGIN
+  DELETE FROM producto
   WHERE id_producto = in_id;
 END;
 
@@ -244,3 +272,5 @@ BEGIN
   ON s.id_solicitudtecnica = so.id_solicitud
   WHERE in_idsolicitud = s.id_solicitudTecnica;
 END;
+
+

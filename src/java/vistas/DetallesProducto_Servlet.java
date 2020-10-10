@@ -35,11 +35,16 @@ public class DetallesProducto_Servlet extends HttpServlet {
            String id_string = request.getParameter("idProducto");
            int id = Integer.parseInt(id_string);
            int cantidad = 1;
-           controlador.aumentarCarrito(id, cantidad);
-           request.setAttribute("Lista", controlador.obtenerProductos());
-           RequestDispatcher view = request.getRequestDispatcher("Productos_C.jsp");
-           view.forward(request,response);
-           request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
+           boolean estado = controlador.aumentarCarrito(id, cantidad);
+           if(estado){
+                request.setAttribute("Lista", controlador.obtenerProductos());
+                RequestDispatcher view = request.getRequestDispatcher("Productos_C.jsp");
+                view.forward(request,response);
+                request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
+           }
+           else{
+               request.setAttribute("errorMessage", "Error el articulo ya se encuentra en el carrito");
+           }
        }
        else if(request.getParameter("btn_atras") != null){
            request.setAttribute("Lista", controlador.obtenerProductos());
@@ -47,6 +52,11 @@ public class DetallesProducto_Servlet extends HttpServlet {
            view.forward(request,response);
            request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
        }
+       String id_string = request.getParameter("idProducto");
+       int id =  Integer.parseInt(id_string);
+       request.setAttribute("Lista", controlador.obtenerProducto(id));
+       RequestDispatcher view = request.getRequestDispatcher("DetallesProducto_C.jsp");
+       view.forward(request,response);
        request.getRequestDispatcher("./DetallesProducto_C.jsp").forward(request, response);
         
     }

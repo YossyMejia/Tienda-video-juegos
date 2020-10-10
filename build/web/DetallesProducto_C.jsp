@@ -16,6 +16,9 @@
     overflow:scroll;
     height:500px;
 }
+form {    
+    display: inline;
+}
 </style>
 <html>
     <head>
@@ -29,6 +32,7 @@
             <hr>
             <form action="./DetallesProducto" method="post">
              <div class="scrollit">
+             <div style="color: #FF0000;">${errorMessage}</div>
             <table class="table table-bordered">
                 <tr>
                     <th>Codigo</th>

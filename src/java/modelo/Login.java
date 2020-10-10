@@ -52,9 +52,23 @@ public class Login {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
+
+    public Carrito getCarritoCompras() {
+        return carritoCompras;
+    }
+
+    public void setCarritoCompras(Carrito carritoCompras) {
+        this.carritoCompras = carritoCompras;
+    }
     
-    public void agregarArticuloCarrito(int id, int cantidad){
-        carritoCompras.anadirProducto(id, cantidad);
+    
+    
+    public boolean agregarArticuloCarrito(int id, int cantidad){
+        if(carritoCompras.verificarProducto(id) == true){
+            carritoCompras.anadirProducto(id, cantidad);
+            return true;
+        }
+        return false;
     }
     
 }

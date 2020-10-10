@@ -5,6 +5,7 @@
  */
 package vistas;
 
+import DB.ConnectionMDB;
 import controlador.Controlador;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -24,7 +25,6 @@ public class Login_Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getParameter("btn_registrarse") != null){
-            request.setAttribute("message", "hello");
             RequestDispatcher view=request.getRequestDispatcher("/Registro.jsp");
             view.forward(request,response);
         }

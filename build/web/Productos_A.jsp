@@ -16,6 +16,9 @@
     overflow:scroll;
     height:500px;
 }
+form {    
+    display: inline;
+}
 </style>
 <html>
     <head>
@@ -49,6 +52,7 @@
                     <td class="text-center"><%= lista.get(i).getNombreCategoria()%></td>
                     <td>
                         <button class="btn-default" name="idProducto"  value=<%=lista.get(i).getCodigo()%>>Editar</button>
+                        <button class="btn-default btn-danger" name="idProductoEliminar"  value=<%=lista.get(i).getCodigo()%>>Eliminar</button>
                     </td>
                 </tr> 
                 <%}%>

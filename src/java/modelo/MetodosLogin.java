@@ -62,7 +62,7 @@ public class MetodosLogin {
         
         ArrayList<Login> arreglo = new ArrayList();
         try{
-            //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
+            //INICIO SP
             
             stmt = conn.prepareCall("{call  TIENDAGG.sp_checkCorreo (?,?)}");
             stmt.setString(1, user);

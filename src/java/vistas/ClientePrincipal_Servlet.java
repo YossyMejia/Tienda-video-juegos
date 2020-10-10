@@ -41,6 +41,12 @@ public class ClientePrincipal_Servlet extends HttpServlet {
            view.forward(request,response);
            request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
        }
+       else if(request.getParameter("btn_carrito") != null){
+           request.setAttribute("Lista", controlador.obtenerProductosCarrito());
+           RequestDispatcher view = request.getRequestDispatcher("Carrito_C.jsp");
+           view.forward(request,response);
+           request.getRequestDispatcher("./Carrito_C.jsp").forward(request, response);
+       }
        else if(request.getParameter("btn_salir") != null){
            request.getRequestDispatcher("./index.jsp").forward(request, response);
        }

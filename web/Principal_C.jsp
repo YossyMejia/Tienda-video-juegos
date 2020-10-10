@@ -10,6 +10,9 @@
 .bodyb { 
  background-color: silver;
 } 
+form {    
+    display: inline;
+}
 </style>
 <html>
     <head>
@@ -22,6 +25,7 @@
         <hr>
         <form action="./ClientePrincipal" method="post">
             <button class="btn-default" name="btn_productos" value="Productos"/>Ver productos</button>
+            <button class="btn-default" name="btn_carrito" value="Carrito"/>Ver carrito</button>
             <button class="btn-default" name="btn_soporte" value="Soporte"/>Solicitar Soporte</button>
             <button class="btn-default btn-group-xs" name="btn_salir" value="Salir"/>Salir</button>
         </form>

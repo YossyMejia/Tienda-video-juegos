@@ -26,7 +26,15 @@ public class ProductosCliente_Servlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+       if(request.getParameter("btn_filtro") != null){
+           String precio_string = request.getParameter("txt_filtroPrecio");
+           String categoria = request.getParameter("txt_filtroCategoria");
+           int precio =  Integer.parseInt(precio_string);
+           request.setAttribute("Lista", controlador.obtenerProductosFiltrados(precio, categoria));
+           RequestDispatcher view = request.getRequestDispatcher("Productos_C.jsp");
+           view.forward(request,response);
+           request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
+       }
     }
 
     
@@ -44,6 +52,20 @@ public class ProductosCliente_Servlet extends HttpServlet {
            view.forward(request,response);
            request.getRequestDispatcher("./DetallesProducto_C.jsp").forward(request, response);
        } 
+       else if(request.getParameter("btn_filtro") != null){
+           String id_string = request.getParameter("idProducto");
+           int id =  Integer.parseInt(id_string);
+           request.setAttribute("Lista", controlador.obtenerProducto(id));
+           RequestDispatcher view = request.getRequestDispatcher("DetallesProducto_C.jsp");
+           view.forward(request,response);
+           request.getRequestDispatcher("./DetallesProducto_C.jsp").forward(request, response);
+       }
+       else if(request.getParameter("btn_eliminarFiltro") != null){
+           request.setAttribute("Lista", controlador.obtenerProductos());
+           RequestDispatcher view = request.getRequestDispatcher("Productos_C.jsp");
+           view.forward(request,response);
+           request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
+       }
         request.getRequestDispatcher("./Productos_C.jsp").forward(request, response);
     }
     
