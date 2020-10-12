@@ -4,15 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Principal_S.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Direccion_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/ResolverSolicitud_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/CrearSolicitud_C.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Categorias_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Productos_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/Usuario.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/index.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Tarjeta_C.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/EditarProducto_A.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/CrearProducto_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Direccion_C.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/EliminarProducto_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/MetodosDireccion.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Comprar_C.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/ClientePrincipal_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Registro_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/DB/ConnectionMDB.java</file>
@@ -21,6 +26,7 @@
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/Solicitud.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Principal_A.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/CrearCategorias_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/Direccion.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/Login.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/CrearProducto_A.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Principal_C.jsp</file>
@@ -34,8 +40,11 @@
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/DetalleSolicitud_A.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/MetodosLogin.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Registro.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Tarjeta_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Login_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/Tarjeta.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/CrearSolicitud_Servlet.java</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/MetodosTarjeta.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/CrearUsuario_A.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/Carrito_C.jsp</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/VerSolicitudes_Servlet.java</file>
@@ -47,6 +56,7 @@
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/nbproject/build-impl.xml</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/ProductosCliente_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/web/CrearCategorias_A.jsp</file>
+            <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Carrito_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/modelo/Producto.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/DetallesProducto_Servlet.java</file>
             <file>file:/E:/User/Documentos/Semestre%202/Bases%202/Proyectos/TiendaVJWeb1/TiendaVJWEB/src/java/vistas/Usuarios_Servlet.java</file>

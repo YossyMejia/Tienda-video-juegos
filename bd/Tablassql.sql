@@ -96,19 +96,37 @@ ALTER TABLE usuario
 
 --Tabla direccion
 CREATE TABLE direccion (
-    id_direccion  NUMBER NOT NULL,
-    datos_extra   VARCHAR2(255 BYTE) NOT NULL --,
-    --id_distrito   NUMBER NOT NULL
+    id_direccion  NUMBER GENERATED ALWAYS AS IDENTITY,
+    provincia VARCHAR2(30 CHAR) NOT NULL,
+    canton VARCHAR2(30 CHAR) NOT NULL,
+    distrito VARCHAR2(30 CHAR) NOT NULL,
+    datos_extra   VARCHAR2(255 CHAR) NOT NULL,
+    id_usuario NUMBER
 );
 
 ALTER TABLE direccion ADD CONSTRAINT direccion_pk PRIMARY KEY ( id_direccion );
 
---ALTER TABLE direccion
---    ADD CONSTRAINT direccion_distrito_fk FOREIGN KEY ( id_distrito )
---        REFERENCES distrito ( id_distrito );
+ALTER TABLE direccion
+    ADD CONSTRAINT usuarioxdireccionfk FOREIGN KEY ( id_usuario )
+        REFERENCES usuario ( id_usuario );
         
 
 
+--Tabla tarjeta
+
+CREATE TABLE tarjeta (
+    numero_tarjeta     VARCHAR2(50 CHAR) NOT NULL,
+    titular_tarjeta    VARCHAR2(50 CHAR) NOT NULL,
+    ccv                NUMBER NOT NULL,
+    fecha_vencimiento  VARCHAR2(50 CHAR) NOT NULL,
+    id_usuario         NUMBER NOT NULL
+);
+
+ALTER TABLE tarjeta ADD CONSTRAINT tarjeta_pk PRIMARY KEY ( numero_tarjeta );
+
+ALTER TABLE tarjeta
+    ADD CONSTRAINT tarjeta_usuario_fk FOREIGN KEY ( id_usuario )
+        REFERENCES usuario ( id_usuario );
 
 
 

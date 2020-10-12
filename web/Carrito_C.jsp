@@ -27,7 +27,7 @@
         <div class="container">
             <h1>Detalles de carrito</h1>
             <hr>
-            <form action="./DetallesCarrito" method="post">
+            <form action="./Carrito" method="post">
              <div class="scrollit">
              <div style="color: #FF0000;">${errorMessage}</div>
             <table class="table table-bordered">

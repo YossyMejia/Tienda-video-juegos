@@ -19,7 +19,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import modelo.Carrito;
+import modelo.Direccion;
+import modelo.MetodosDireccion;
 import modelo.MetodosSolicitud;
+import modelo.MetodosTarjeta;
 import modelo.Solicitud;
 /**
  *
@@ -32,6 +35,8 @@ public class Controlador {
     private MetodosProductos metodosProducto = new MetodosProductos();
     private MetodosCategoria metodosCategoria = new MetodosCategoria();
     private MetodosSolicitud metodosSolicitud = new MetodosSolicitud();
+    private MetodosTarjeta metodosTarjeta = new MetodosTarjeta();
+    private MetodosDireccion metodosDireccion = new MetodosDireccion();
     
     public Controlador() {
     }
@@ -82,7 +87,7 @@ public class Controlador {
     }
     
     
-    public boolean crearProducto(int id,String nombre,int precio,int cantidad,      //Funcion para crear un producto
+    public boolean crearProducto(int id,String nombre,int precio,int cantidad,      //Funcion para crear un producto 
         String descripcion,int categoria){
         boolean estado = metodosProducto.postProducto(id, nombre, descripcion, precio, cantidad, categoria);
         return estado;
@@ -111,6 +116,20 @@ public class Controlador {
         int id_tecnico = usuarioAplicacion.getUser_id();
         boolean estado = metodosSolicitud.postSolucion(id_tecnico,respuesta, 
                 fecha_hora, id_solicitud);
+        return estado;
+    }
+    
+    public boolean creaTarjeta(String numero, String nombre, String fecha, int ccv){
+        int id_usuario = usuarioAplicacion.getUser_id();
+        boolean estado = metodosTarjeta.postTarjeta(id_usuario,numero, nombre,
+                fecha, ccv);
+        return estado;
+    }
+    
+    public boolean creaDireccion(String provincia, String canton, String distrito, String datosExtra){
+        int id_usuario = usuarioAplicacion.getUser_id();
+        boolean estado = metodosDireccion.postDireccion(id_usuario,provincia, canton,
+                distrito, datosExtra);
         return estado;
     }
     
@@ -164,6 +183,12 @@ public class Controlador {
         return lista;
     }
     
+    public ArrayList<Direccion> obtenerDirecciones(){
+        int id_usuario = usuarioAplicacion.getUser_id();
+        ArrayList<Direccion> lista = metodosDireccion.getDirecciones(id_usuario);
+        return lista;
+    }
+     
     public boolean modificarProducto(int id, String nombre, int precio, int cantidad){
         boolean estado = metodosProducto.putProducto(id, nombre, precio, cantidad);
         return estado;

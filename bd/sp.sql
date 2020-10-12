@@ -155,7 +155,7 @@ BEGIN
   WHERE p.id_producto = in_id;
 END;
 
---Funcion para filtrar los productos por precio y categoria
+--Funcion para filtrar los productos por precio y categoria                                                                 --FUNCION
 CREATE OR REPLACE
 FUNCTION fn_getProductosFitlrados 
 (in_precio IN producto.precio%TYPE, 
@@ -274,3 +274,49 @@ BEGIN
 END;
 
 
+--Crear una nueva tarjeta
+create or replace
+PROCEDURE sp_postTarjeta
+(
+ in_usuario IN tarjeta.id_usuario%TYPE,
+ in_numero IN tarjeta.numero_tarjeta%TYPE,
+ in_titular IN tarjeta.titular_tarjeta%TYPE,
+ in_fecha IN tarjeta.fecha_vencimiento%TYPE,
+ in_ccv IN tarjeta.ccv%TYPE
+)
+AS
+BEGIN
+  INSERT INTO tarjeta(numero_tarjeta, titular_tarjeta, ccv, fecha_vencimiento, id_usuario)
+  VALUES (in_numero, in_titular, in_ccv, in_fecha, in_usuario);
+END;
+
+
+--Crear una nueva direccion 
+create or replace
+PROCEDURE sp_postDireccion
+(
+ in_provincia IN direccion.provincia%TYPE,
+ in_canton IN direccion.canton%TYPE,
+ in_distrito IN direccion.distrito%TYPE,
+ in_datos_extra IN direccion.datos_extra%TYPE,
+ in_usuario IN direccion.id_usuario%TYPE
+)
+AS
+BEGIN
+  INSERT INTO direccion(provincia, canton, distrito, datos_extra, id_usuario)
+  VALUES (in_provincia, in_canton, in_distrito, in_datos_extra, in_usuario);
+END;
+
+
+--Obtener direcciones por usuario
+create or replace
+PROCEDURE sp_getDirecciones
+ (in_id IN direccion.id_usuario%TYPE,
+ out_cursor_direcciones OUT SYS_REFCURSOR)
+AS
+BEGIN   
+  OPEN out_cursor_direcciones FOR
+  SELECT d.id_direccion, d.provincia, d.canton, d.distrito, d.datos_extra
+  FROM direccion d
+  WHERE d.id_usuario = in_id;
+END;
