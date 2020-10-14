@@ -290,6 +290,18 @@ BEGIN
   VALUES (in_numero, in_titular, in_ccv, in_fecha, in_usuario);
 END;
 
+--Obtener tarejtas por usuario
+create or replace
+PROCEDURE sp_getTarjetas
+ (in_id IN tarjeta.id_usuario%TYPE,
+ out_cursor_tarjetas OUT SYS_REFCURSOR)
+AS
+BEGIN   
+  OPEN out_cursor_tarjetas FOR
+  SELECT t.numero_tarjeta, t.titular_tarjeta, t.ccv, t.fecha_vencimiento
+  FROM tarjeta t
+  WHERE t.id_usuario = in_id;
+END;
 
 --Crear una nueva direccion 
 create or replace
@@ -320,3 +332,72 @@ BEGIN
   FROM direccion d
   WHERE d.id_usuario = in_id;
 END;
+
+
+--Realizar una compra
+create or replace
+PROCEDURE sp_postCompra
+ (in_id_usuario IN orden.id_usuario%TYPE,
+  in_id_direccion IN orden.id_direccion%TYPE,
+  in_id_productos IN varchar2,
+  in_fecha IN varchar2,
+  in_monto IN factura.monto%TYPE,
+  in_tarjeta IN factura.numero_tarjeta%TYPE)
+AS
+ producto varchar2(50 CHAR);
+ productos_id  varchar2(500 CHAR);
+ id_orden_nueva NUMBER;
+BEGIN   
+    
+    --creo una orden
+    INSERT INTO orden(fecha_orden,detalles,estado,id_direccion,id_usuario)
+    VALUES (in_fecha,'compra de un cliente','pendiente',in_id_direccion,in_id_usuario);
+    
+    SELECT id_orden INTO id_orden_nueva FROM orden o WHERE o.fecha_orden = in_fecha and o.id_direccion = in_id_direccion and
+    o.id_usuario = in_id_usuario;
+    
+    --recorro los productos de la orden para agregarlos a ordenxproducto
+    productos_id := in_id_productos;
+    if length(productos_id) > 0 then
+      loop
+        if instr(productos_id,' ') > 0 then
+            producto := substr(productos_id, 1, instr(productos_id, ' ')-1);
+            productos_id := trim(substr(productos_id, instr(productos_id, ' ')+1));
+        else
+            producto := productos_id;
+            productos_id := '';
+        end if;
+        INSERT INTO ordenxproducto(id_orden, id_producto)
+        VALUES (id_orden_nueva, producto);
+        
+        UPDATE producto SET cantidad = cantidad-1
+        WHERE id_producto = producto;
+        
+        DBMS_OUTPUT.PUT_LINE (producto || ' ');
+      exit when productos_id is null;
+      end loop;
+    end if;
+    
+    --Creo la factura
+    INSERT INTO factura(fecha_factura, detalles, monto, numero_tarjeta, id_orden)
+    VALUES (in_fecha, 'compra de un cliente', in_monto, in_tarjeta ,id_orden_nueva);
+    
+END;
+
+
+
+SET SERVEROUTPUT ON
+call sp_postCompra(1,1,'2222 2222 4324 453252', 122);
+
+
+
+
+
+
+
+
+
+
+
+
+

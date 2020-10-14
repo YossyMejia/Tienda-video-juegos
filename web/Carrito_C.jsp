@@ -30,6 +30,7 @@
             <form action="./Carrito" method="post">
              <div class="scrollit">
              <div style="color: #FF0000;">${errorMessage}</div>
+              <div class="label-success">${succesMessage}</div>
             <table class="table table-bordered">
                 <tr>
                     <th>Codigo</th>

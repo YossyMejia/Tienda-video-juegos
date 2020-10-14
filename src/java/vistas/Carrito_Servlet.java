@@ -32,10 +32,18 @@ public class Carrito_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        if(request.getParameter("btn_comprar") != null){
-           request.setAttribute("ListaDirecciones", controlador.obtenerDirecciones());  //hacer que en compra si las lista estan vacias decirle al usuario que vaya a anadir datos
-           RequestDispatcher view = request.getRequestDispatcher("Comprar_C.jsp");
-           view.forward(request,response);
-           request.getRequestDispatcher("./Comprar_C.jsp").forward(request, response);
+           if(controlador.carritoVacio() == false){
+            request.setAttribute("ListaDirecciones", controlador.obtenerDirecciones());  
+            request.setAttribute("ListaTarjetas", controlador.obtenerTarjetas());
+            RequestDispatcher view = request.getRequestDispatcher("Comprar_C.jsp");
+            view.forward(request,response);
+            request.getRequestDispatcher("./Comprar_C.jsp").forward(request, response);
+           }
+           else{
+               request.setAttribute("errorMessage", "Debe tener al menos un producto para comprar");
+               request.getRequestDispatcher("./Carrito_C.jsp").forward(request, response);
+           }
+           
        }
        else if(request.getParameter("btn_atras") != null){
            request.getRequestDispatcher("./Principal_C.jsp").forward(request, response);

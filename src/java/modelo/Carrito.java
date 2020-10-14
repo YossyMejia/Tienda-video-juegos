@@ -14,8 +14,8 @@ import modelo.Producto;
 public class Carrito {
     private ArrayList<Producto> listadoProductos = new ArrayList();
     
-    public void anadirProducto(int id, int cantidad){
-        Producto producto = new Producto(id, cantidad);
+    public void anadirProducto(int id, int cantidad, int precio){
+        Producto producto = new Producto(id, cantidad, precio);
         listadoProductos.add(producto);
     }
     
@@ -35,4 +35,25 @@ public class Carrito {
         }
         return true;
     }
+    
+    public String obtenerProductos(){
+        String productos = "";
+        for(int i=0; i<listadoProductos.size(); i++){
+            productos += listadoProductos.get(i).getCodigo()+" ";
+        }
+        return productos;
+    }
+    
+    public int obtenerTotal(){
+        int total = 0;
+        for(int i=0; i<listadoProductos.size(); i++){
+            total += listadoProductos.get(i).getPrecio();
+        }
+        return total;
+    }
+    
+    public void limpiar(){
+        listadoProductos.clear();
+    }
+    
 }

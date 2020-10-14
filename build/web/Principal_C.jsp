@@ -26,10 +26,11 @@ form {
         <form action="./ClientePrincipal" method="post">
             <button class="btn-default" name="btn_productos" value="Productos"/>Ver productos</button>
             <button class="btn-default" name="btn_carrito" value="Carrito"/>Ver carrito</button>
-            <button class="btn-default" name="btn_soporte" value="Soporte"/>Solicitar Soporte</button>
+            <button class="btn-default" name="btn_historial" value="Historial"/>Historial compras</button><br><br>
             <button class="btn-default" name="btn_tarjeta" value="Tarjeta"/>Ingresar tarjeta</button>
-            <button class="btn-default" name="btn_direccion" value="Direccion"/>Ingresar direccion</button>
-            <button class="btn-default btn-group-xs" name="btn_salir" value="Salir"/>Salir</button>
+            <button class="btn-default" name="btn_direccion" value="Direccion"/>Ingresar direccion</button><br><br>
+            <button class="btn-default" name="btn_soporte" value="Soporte"/>Solicitar Soporte</button><br><br>
+            <button class="btn-default btn-danger right" name="btn_salir" value="Salir"/>Salir</button>
         </form>
     </body>
 </html>

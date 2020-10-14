@@ -56,6 +56,9 @@ public class ClientePrincipal_Servlet extends HttpServlet {
        else if(request.getParameter("btn_direccion") != null){
            request.getRequestDispatcher("./Direccion_C.jsp").forward(request, response);
        }
+       else if(request.getParameter("btn_historial") != null){
+           request.getRequestDispatcher("./Historial_C.jsp").forward(request, response);
+       }
        request.getRequestDispatcher("./Principal_C.jsp").forward(request, response);
         
     }

@@ -37,7 +37,6 @@ form {
                     <th class="text-center">Apellido</th>
                      <th class="text-center">Correo</th>
                      <th class="text-center">Tipo Usuario</th>
-                     <th class="text-center">Accion</th>
                 </tr>
                 <%if(request.getAttribute("Lista") != null){ %>
                 <% ArrayList<Usuario> lista = (ArrayList<Usuario>) request.getAttribute("Lista"); %>
@@ -48,10 +47,6 @@ form {
                     <td class="text-center"><%= lista.get(i).getApellido1()%></td>
                     <td class="text-center"><%= lista.get(i).getCorreo()%></td>
                     <td class="text-center"><%= lista.get(i).getDescripcionTipo()%></td>
-                    <td>
-                        <a >Editar</a>
-                        <a >Eliminar</a>
-                    </td>
                 </tr> 
                 <%}%>
                <%}%>

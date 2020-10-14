@@ -26,10 +26,10 @@ form {
         <form action="./AdministradorPrincipal" method="post">
             <button class="btn-default" name="btn_categorias" value="Categorias"/>Administrar Categorias</button>
             <button class="btn-default" name="btn_usuarios" value="Usuarios"/>Administrar Usuarios</button>
-            <button class="btn-default" name="btn_productos" value="Productos"/>Administrar Productos</button>
-            <button class="btn-default" name="btn_registro_soporte" value="Solicitudes"/>Ver solicitudes resueltas</button>
+            <button class="btn-default" name="btn_productos" value="Productos"/>Administrar Productos</button><br><br>
+            <button class="btn-default" name="btn_registro_soporte" value="Solicitudes"/>Ver solicitudes resueltas</button><br><br>
             
-            <button class="btn-default btn-group-xs" name="btn_salir" value="Salir"/>Salir</button>
+            <button class="btn-default btn-danger" name="btn_salir" value="Salir"/>Salir</button>
         </form>
     </body>
 </html>

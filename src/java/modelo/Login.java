@@ -63,12 +63,34 @@ public class Login {
     
     
     
-    public boolean agregarArticuloCarrito(int id, int cantidad){
+    public boolean agregarArticuloCarrito(int id, int cantidad, int precio){
         if(carritoCompras.verificarProducto(id) == true){
-            carritoCompras.anadirProducto(id, cantidad);
+            carritoCompras.anadirProducto(id, cantidad, precio);
             return true;
         }
         return false;
     }
+    
+    public boolean carritoVacio(){
+        if(carritoCompras.getTamano() == 0){
+            return true;
+        }
+        return false;
+    }
+    
+    public String getProductos(){
+        String productos = carritoCompras.obtenerProductos();
+        return productos;
+    }
+    
+    public int getTotalCarrito(){
+        int total = carritoCompras.obtenerTotal();
+        return total;
+    }
+    
+    public void limpiarCarrito(){
+        carritoCompras.limpiar();
+    }
+    
     
 }

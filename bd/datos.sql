@@ -60,3 +60,9 @@ select * from tarjeta
 
 select * from direccion
 
+
+select * from orden;
+
+select * from ordenxproducto;
+
+select * from factura;

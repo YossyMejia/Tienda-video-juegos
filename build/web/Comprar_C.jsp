@@ -4,6 +4,7 @@
     Author     : XPC
 --%>
 
+<%@page import="modelo.Tarjeta"%>
 <%@page import="modelo.Direccion"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -26,21 +27,42 @@
     <body class="bodyb">
         <div class="container">
         <h1 class="text-center">Comprar</h1>
+        <div style="color: #FF0000;">${errorMessage}</div>
         <hr>
         <form action="./Comprar" method="post">
-            <div class="scrollit">
-                <select>
-                    <option >Elije una direccion</option>
-                    <%if(request.getAttribute("ListaDirecciones") != null){ %>      
-                    <% ArrayList<Direccion> lista = (ArrayList<Direccion>) request.getAttribute("ListaDirecciones"); %>
-                    <%  for(int i=0; i<lista.size(); i++){ %>
-                    <option value="<%= lista.get(i).getProvincia()%>"><%= lista.get(i).getProvincia()%></option>
+                <%if(request.getAttribute("ListaDirecciones") != null &&
+                     request.getAttribute("ListaTarjetas") != null  ){ %> 
+                <label for="direccion">Elije la direccion de envio </label><br>
+                <select name="cbx_direccion">
+                         
+                    <% ArrayList<Direccion> listaDirecciones = (ArrayList<Direccion>) request.getAttribute("ListaDirecciones"); %>
+                    <%  for(int i=0; i<listaDirecciones.size(); i++){ %>
+                    <option name="cbx_direccion" value=<%= listaDirecciones.get(i).getId()%>>
+                        <%= listaDirecciones.get(i).getProvincia()%>
+                        <%= listaDirecciones.get(i).getDistrito()%>
+                        <%= listaDirecciones.get(i).getDatos_extra()%></option>
                         <%}%>
-                    <%}%>
+                    
                  </select>
-            </div><br><br><br>
-            <button class="btn-default" name="btn_crear" value="crear"/>Comprar</button>
+                 <br><br><br>
+                <label for="direccion">Elije la tarjeta de pago </label><br>
+                <select name="cbx_tarjetas">
+                         
+                    <% ArrayList<Tarjeta> listaTarjetas = (ArrayList<Tarjeta>) request.getAttribute("ListaTarjetas"); %>
+                    <%  for(int i=0; i<listaTarjetas.size(); i++){ %>
+                    <option name="cbx_tarjetas" value=<%= listaTarjetas.get(i).getNumero()%>>
+                        <%= listaTarjetas.get(i).getNumero()%>
+                        <%= listaTarjetas.get(i).getNombre()%>
+                        <%= listaTarjetas.get(i).getFecha()%></option>
+                        <%}%>
+                    
+                 </select><br><br><br>
+                  <button class="btn-default" name="btn_comprar" value="comprar"/>Comprar</button>
+                <%}else {%>
+                    <label class="label-danger" for="error">Debe tener al menos una direccion y una tarjeta para realizar la compra! </label><br>
+                <% } %>
             <button class="btn-default" name="btn_atras" value="atras"/>Atras</button>
+            </div><br><br>
         </form>
         </div>
     </body> 

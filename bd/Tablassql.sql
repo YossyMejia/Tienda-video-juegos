@@ -213,7 +213,7 @@ ALTER TABLE solicitudTecnica
         REFERENCES usuario ( id_usuario );
     
         
-        
+--Tabla solucion tecnica     
 CREATE TABLE solucionTecnica(
     id_solucionTecnica    NUMBER GENERATED ALWAYS AS IDENTITY,
     id_tecnico            NUMBER NOT NULL,
@@ -228,4 +228,74 @@ ALTER TABLE solucionTecnica
     ADD CONSTRAINT solucionTecnicaxtecnico_fk FOREIGN KEY ( id_tecnico )
         REFERENCES usuario ( id_usuario );
     
-      
+
+--Tabla orden
+CREATE TABLE orden(
+    id_orden              NUMBER GENERATED ALWAYS AS IDENTITY,
+    fecha_orden           VARCHAR2(50 CHAR) NOT NULL,
+    detalles              VARCHAR2(150 CHAR) NOT NULL,
+    estado                VARCHAR2(50 CHAR) NOT NULL,
+    id_direccion          NUMBER NOT NULL,
+    id_usuario            NUMBER NOT NULL
+);
+
+ALTER TABLE orden ADD CONSTRAINT id_orden_pk PRIMARY KEY ( id_orden );
+
+ALTER TABLE orden
+    ADD CONSTRAINT ordenxdireccion_fk FOREIGN KEY ( id_direccion )
+        REFERENCES direccion ( id_direccion );
+    
+ALTER TABLE orden
+    ADD CONSTRAINT ordenxusuario_fk FOREIGN KEY ( id_usuario )
+        REFERENCES usuario ( id_usuario );
+
+
+--Tabla ordenXproducto
+CREATE TABLE ordenxproducto(
+    id                    NUMBER GENERATED ALWAYS AS IDENTITY,
+    id_orden              NUMBER,
+    id_producto           NUMBER
+);
+
+ALTER TABLE ordenxproducto ADD CONSTRAINT ordenxproducto_pk PRIMARY KEY ( id );
+
+ALTER TABLE ordenxproducto
+    ADD CONSTRAINT ordenxproducto_fk FOREIGN KEY ( id_producto )
+        REFERENCES producto ( id_producto );
+    
+ALTER TABLE ordenxproducto
+    ADD CONSTRAINT ordenxorden_fk FOREIGN KEY ( id_orden )
+        REFERENCES orden ( id_orden );
+        
+
+--Tabla factura
+CREATE TABLE factura(
+    id_factura            NUMBER GENERATED ALWAYS AS IDENTITY,
+    fecha_factura         VARCHAR2(50 CHAR) NOT NULL,
+    detalles              VARCHAR2(150 CHAR) NOT NULL,
+    monto                 NUMBER NOT NULL,
+    numero_tarjeta        VARCHAR2(50 CHAR) NOT NULL,
+    id_orden              NUMBER NOT NULL
+);
+
+ALTER TABLE factura ADD CONSTRAINT factura_pk PRIMARY KEY ( id_factura );
+
+ALTER TABLE factura
+    ADD CONSTRAINT facturaxtarjeta_fk FOREIGN KEY ( numero_tarjeta )
+        REFERENCES tarjeta ( numero_tarjeta );
+    
+ALTER TABLE factura
+    ADD CONSTRAINT tajretaxorden_fk FOREIGN KEY ( id_orden )
+        REFERENCES orden ( id_orden );
+
+
+
+
+
+
+
+
+
+
+
+

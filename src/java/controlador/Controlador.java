@@ -20,10 +20,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import modelo.Carrito;
 import modelo.Direccion;
+import modelo.MetodosCompra;
 import modelo.MetodosDireccion;
 import modelo.MetodosSolicitud;
 import modelo.MetodosTarjeta;
 import modelo.Solicitud;
+import modelo.Tarjeta;
 /**
  *
  * @author XPC
@@ -37,6 +39,7 @@ public class Controlador {
     private MetodosSolicitud metodosSolicitud = new MetodosSolicitud();
     private MetodosTarjeta metodosTarjeta = new MetodosTarjeta();
     private MetodosDireccion metodosDireccion = new MetodosDireccion();
+    private MetodosCompra metodosCompra = new MetodosCompra();
     
     public Controlador() {
     }
@@ -133,6 +136,16 @@ public class Controlador {
         return estado;
     }
     
+    public boolean crearCompra(String tarjeta, int direccion){
+        int id_usuario = usuarioAplicacion.getUser_id();
+        String productos = usuarioAplicacion.getProductos();
+        String fecha = fechaActual();
+        int total = usuarioAplicacion.getTotalCarrito();
+        boolean estado = metodosCompra.postCompra(id_usuario, direccion, productos,
+                total, fecha, tarjeta);
+        return estado;
+    }
+    
     public ArrayList<Categoria> obtenerCategorias(){                    //Funcion para obtener todas las categorias
         ArrayList<Categoria> lista = metodosCategoria.getCategorias();
         return lista;
@@ -188,6 +201,12 @@ public class Controlador {
         ArrayList<Direccion> lista = metodosDireccion.getDirecciones(id_usuario);
         return lista;
     }
+    
+    public ArrayList<Tarjeta> obtenerTarjetas(){
+        int id_usuario = usuarioAplicacion.getUser_id();
+        ArrayList<Tarjeta> lista = metodosTarjeta.getTarjetas(id_usuario);
+        return lista;
+    }
      
     public boolean modificarProducto(int id, String nombre, int precio, int cantidad){
         boolean estado = metodosProducto.putProducto(id, nombre, precio, cantidad);
@@ -200,10 +219,20 @@ public class Controlador {
     }
     
     public boolean aumentarCarrito(int id, int cantidad){
-        boolean estado = usuarioAplicacion.agregarArticuloCarrito(id, cantidad);
+        ArrayList<Producto> producto = metodosProducto.getProductoDetalles(id);
+        int precio = producto.get(0).getPrecio();
+        boolean estado = usuarioAplicacion.agregarArticuloCarrito(id, cantidad, precio);
         return estado;
     }
     
+    public boolean carritoVacio(){
+        boolean estado = usuarioAplicacion.carritoVacio();
+        return estado;
+    }
+    
+    public void limpiarCarrito(){
+        usuarioAplicacion.limpiarCarrito();
+    }
     
     public String fechaActual(){
         Date objDate = new Date(); 

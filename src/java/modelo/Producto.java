@@ -25,9 +25,10 @@ public class Producto {
         this.nombreCategoria = nombreCategoria;
     }
 
-    public Producto(int codigo, int cantidad) {
+    public Producto(int codigo, int cantidad, int precio) {
         this.codigo = codigo;
         this.cantidad = cantidad;
+        this.precio = precio;
     }
 
     

@@ -25,7 +25,7 @@ form {
         <hr>
         <form action="./Soporte" method="post">
             <button class="btn-default" name="btn_resolver" value="Resolver"/>Resolver consultas</button>
-            <button class="btn-default btn-group-xs" name="btn_salir" value="Salir"/>Salir</button>
+            <button class="btn-default btn-danger" name="btn_salir" value="Salir"/>Salir</button>
         </form>
     </body>
 </html>

@@ -15,7 +15,7 @@ public class Tarjeta {
     private int ccv;
     private String fecha;
 
-    public Tarjeta(String nombre, String numero, int ccv, String fecha) {
+    public Tarjeta(String numero, String nombre, int ccv, String fecha) {
         this.nombre = nombre;
         this.numero = numero;
         this.ccv = ccv;

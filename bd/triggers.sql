@@ -417,3 +417,147 @@ END;
 
 select * from direccion_bu;
 
+
+--TRIGGER ORDEN
+drop table orden_bu;
+
+--Tabla para back up de solucion
+CREATE TABLE orden_bu ( 
+action_date TIMESTAMP, 
+action VARCHAR2(50),
+change_by VARCHAR2 (50),
+table_name VARCHAR2 (30),
+table_id NUMBER,
+old_data VARCHAR2 (300),
+new_data VARCHAR2 (300)
+);
+
+
+CREATE OR REPLACE TRIGGER orden_bu_TRIGGER
+  AFTER INSERT OR UPDATE OR DELETE
+  ON orden FOR EACH ROW
+DECLARE
+  action  orden_bu.action%TYPE;
+  id_tabla orden.id_orden%TYPE;
+BEGIN
+  IF INSERTING THEN
+    action := 'Insert';
+    id_tabla := :NEW.id_orden;
+  ELSIF UPDATING THEN
+    action := 'Update';
+    id_tabla := :NEW.id_orden;
+  ELSIF DELETING THEN
+    action := 'Delete';
+    id_tabla := :OLD.id_orden;
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('This code is not reachable.');
+  END IF;
+  
+  INSERT INTO  orden_bu(action_date, action, change_by, table_name, table_id, old_data , new_data)
+    VALUES (SYSTIMESTAMP, action,  user, 'orden', id_tabla,  
+    (:OLD.fecha_orden ||' ' || :OLD.detalles ||' ' || :OLD.estado ||' ' || :OLD.id_direccion ||' ' || :OLD.id_usuario ),
+    (:NEW.fecha_orden ||' ' || :NEW.detalles ||' ' || :NEW.estado ||' ' || :NEW.id_direccion ||' ' || :NEW.id_usuario ) );
+END;
+
+select * from orden_bu;
+
+
+
+--TRIGGER ORDENXPRODUCTO
+drop table ordenxproducto_bu;
+
+--Tabla para back up de solucion
+CREATE TABLE ordenxproducto_bu ( 
+action_date TIMESTAMP, 
+action VARCHAR2(50),
+change_by VARCHAR2 (50),
+table_name VARCHAR2 (30),
+table_id NUMBER,
+old_data VARCHAR2 (300),
+new_data VARCHAR2 (300)
+);
+
+
+CREATE OR REPLACE TRIGGER ordenxproducto_bu_TRIGGER
+  AFTER INSERT OR UPDATE OR DELETE
+  ON ordenxproducto FOR EACH ROW
+DECLARE
+  action  ordenxproducto_bu.action%TYPE;
+  id_tabla ordenxproducto.id%TYPE;
+BEGIN
+  IF INSERTING THEN
+    action := 'Insert';
+    id_tabla := :NEW.id;
+  ELSIF UPDATING THEN
+    action := 'Update';
+    id_tabla := :NEW.id;
+  ELSIF DELETING THEN
+    action := 'Delete';
+    id_tabla := :OLD.id;
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('This code is not reachable.');
+  END IF;
+  
+  INSERT INTO  ordenxproducto_bu(action_date, action, change_by, table_name, table_id, old_data , new_data)
+    VALUES (SYSTIMESTAMP, action,  user, 'ordenxproducto', id_tabla,  
+    (:OLD.id_orden ||' ' || :OLD.id_producto),
+    (:NEW.id_orden ||' ' || :NEW.id_producto ) );
+END;
+
+select * from ordenxproducto_bu;
+
+
+--TRIGGER TARJETA
+drop table factura_bu;
+
+--Tabla para back up de solucion
+CREATE TABLE factura_bu ( 
+action_date TIMESTAMP, 
+action VARCHAR2(50),
+change_by VARCHAR2 (50),
+table_name VARCHAR2 (30),
+table_id NUMBER,
+old_data VARCHAR2 (300),
+new_data VARCHAR2 (300)
+);
+
+
+CREATE OR REPLACE TRIGGER factura_bu_TRIGGER
+  AFTER INSERT OR UPDATE OR DELETE
+  ON factura FOR EACH ROW
+DECLARE
+  action  factura_bu.action%TYPE;
+  id_tabla factura.id_factura%TYPE;
+BEGIN
+  IF INSERTING THEN
+    action := 'Insert';
+    id_tabla := :NEW.id_factura;
+  ELSIF UPDATING THEN
+    action := 'Update';
+    id_tabla := :NEW.id_factura;
+  ELSIF DELETING THEN
+    action := 'Delete';
+    id_tabla := :OLD.id_factura;
+  ELSE
+    DBMS_OUTPUT.PUT_LINE('This code is not reachable.');
+  END IF;
+  
+  INSERT INTO  factura_bu(action_date, action, change_by, table_name, table_id, old_data , new_data)
+    VALUES (SYSTIMESTAMP, action,  user, 'factura', id_tabla,  
+    (:OLD.fecha_factura ||' ' || :OLD.detalles ||' ' || :OLD.monto ||' ' || :OLD.numero_tarjeta ||' ' || :OLD.id_orden),
+    (:NEW.fecha_factura ||' ' || :NEW.detalles ||' ' || :NEW.monto ||' ' || :NEW.numero_tarjeta ||' ' || :NEW.id_orden) );
+END;
+
+select * from factura_bu;
+
+
+
+
+
+
+
+
+
+
+
+
