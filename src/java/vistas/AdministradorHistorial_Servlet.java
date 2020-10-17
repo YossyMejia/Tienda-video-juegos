@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "ClienteHistorial", urlPatterns = {"/ClienteHistorial"})
-public class ClienteHistorial_Servlet extends HttpServlet {
+@WebServlet(name = "AdministradorHistorial", urlPatterns = {"/AdministradorHistorial"})
+public class AdministradorHistorial_Servlet extends HttpServlet {
     private Controlador controlador = new Controlador();
    
     @Override
@@ -34,18 +34,17 @@ public class ClienteHistorial_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        if(request.getParameter("btn_atras") != null){
-           request.getRequestDispatcher("./Principal_C.jsp").forward(request, response);
+           request.getRequestDispatcher("./Principal_A.jsp").forward(request, response);
        }
        else if(request.getParameter("idOrden") != null){
            String id_str = request.getParameter("idOrden");
            int id = Integer.parseInt(id_str);
            request.setAttribute("Lista", controlador.obtenerProductosOrden(id));
-           RequestDispatcher view = request.getRequestDispatcher("DetalleOrden_C.jsp");
+           RequestDispatcher view = request.getRequestDispatcher("DetalleOrden_A.jsp");
            view.forward(request,response);
-           request.getRequestDispatcher("./DetalleOrden_C.jsp").forward(request, response);
+           request.getRequestDispatcher("./DetalleOrden_A.jsp").forward(request, response);
        }
-        request.getRequestDispatcher("./Historial_C.jsp").forward(request, response);
+        request.getRequestDispatcher("./Historial_A.jsp").forward(request, response);
     }
-    
 
 }

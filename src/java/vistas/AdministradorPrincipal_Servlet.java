@@ -65,6 +65,12 @@ public class AdministradorPrincipal_Servlet extends HttpServlet {
        else if(request.getParameter("btn_salir") != null){
            request.getRequestDispatcher("./index.jsp").forward(request, response);
        }
+       else if(request.getParameter("btn_historial") != null){
+           request.setAttribute("Lista", controlador.obtenerCompras());
+           RequestDispatcher view = request.getRequestDispatcher("Historial_A.jsp");
+           view.forward(request,response);
+           request.getRequestDispatcher("./Historial_A.jsp").forward(request, response);
+       }
        request.getRequestDispatcher("./Principal_A.jsp").forward(request, response);
         
     }

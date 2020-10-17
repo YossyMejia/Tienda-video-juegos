@@ -48,6 +48,9 @@ public class Login_Servlet extends HttpServlet {
             else if(estado == "Soporte Tecnico"){
                 request.getRequestDispatcher("Principal_S.jsp").forward(request, response);
             }
+            else if(estado == "Repartidor"){
+                request.getRequestDispatcher("Principal_R.jsp").forward(request, response);
+            }
             else{
                 request.setAttribute("errorMessage", "Datos incorrectos");
             }

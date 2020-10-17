@@ -27,6 +27,7 @@ form {
             <button class="btn-default" name="btn_categorias" value="Categorias"/>Administrar Categorias</button>
             <button class="btn-default" name="btn_usuarios" value="Usuarios"/>Administrar Usuarios</button>
             <button class="btn-default" name="btn_productos" value="Productos"/>Administrar Productos</button><br><br>
+            <button class="btn-default" name="btn_historial" value="Historial"/>Ver historial de compras</button>
             <button class="btn-default" name="btn_registro_soporte" value="Solicitudes"/>Ver solicitudes resueltas</button><br><br>
             
             <button class="btn-default btn-danger" name="btn_salir" value="Salir"/>Salir</button>

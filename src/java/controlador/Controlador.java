@@ -19,6 +19,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import modelo.Carrito;
+import modelo.Compra;
 import modelo.Direccion;
 import modelo.MetodosCompra;
 import modelo.MetodosDireccion;
@@ -70,6 +71,10 @@ public class Controlador {
             else if(usuario.getTipo()== 3){
                 usuarioAplicacion = array.get(0);                                   //Se agrega el usuario de la aplicacion
                 return "Soporte Tecnico";
+            }
+            else if(usuario.getTipo()== 4){
+                usuarioAplicacion = array.get(0);                                   //Se agrega el usuario de la aplicacion
+                return "Repartidor";
             }
         }
         return "ERROR";
@@ -208,8 +213,30 @@ public class Controlador {
         return lista;
     }
      
+    public ArrayList<Compra> obtenerComprasCliente(){
+        int id_usuario = usuarioAplicacion.getUser_id();
+        ArrayList<Compra> lista = metodosCompra.getComprasCliente(id_usuario);
+        return lista;
+    }
+    
+    public ArrayList<Producto> obtenerProductosOrden(int id_orden){
+        ArrayList<Producto> lista = metodosProducto.getProductosOrden(id_orden);
+        return lista;
+    }
+    
+    public ArrayList<Compra> obtenerCompras(){
+        ArrayList<Compra> lista = metodosCompra.getCompras();
+        return lista;
+    }
+    
+    
     public boolean modificarProducto(int id, String nombre, int precio, int cantidad){
         boolean estado = metodosProducto.putProducto(id, nombre, precio, cantidad);
+        return estado;
+    }
+    
+    public boolean entregarOrden(int id){
+        boolean estado = metodosCompra.putOrdenEntregada(id);
         return estado;
     }
     

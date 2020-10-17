@@ -57,6 +57,9 @@ public class ClientePrincipal_Servlet extends HttpServlet {
            request.getRequestDispatcher("./Direccion_C.jsp").forward(request, response);
        }
        else if(request.getParameter("btn_historial") != null){
+           request.setAttribute("Lista", controlador.obtenerComprasCliente());
+           RequestDispatcher view = request.getRequestDispatcher("Historial_C.jsp");
+           view.forward(request,response);
            request.getRequestDispatcher("./Historial_C.jsp").forward(request, response);
        }
        request.getRequestDispatcher("./Principal_C.jsp").forward(request, response);

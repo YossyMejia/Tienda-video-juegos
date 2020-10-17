@@ -53,7 +53,6 @@ public class Comprar_Servlet extends HttpServlet {
             else{
                 request.setAttribute("errorMessage", "Error realizando la compra");
             }
-            
             request.getRequestDispatcher("./Comprar_C.jsp").forward(request, response);
         }
     }

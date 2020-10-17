@@ -155,6 +155,22 @@ BEGIN
   WHERE p.id_producto = in_id;
 END;
 
+--Procedimiento para obtener los productos en una orden
+create or replace
+PROCEDURE sp_getProductosOrden
+ (in_id_orden IN orden.id_orden%TYPE,
+ out_cursor_productos OUT SYS_REFCURSOR)
+AS
+BEGIN   
+  OPEN out_cursor_productos FOR
+  SELECT p.id_producto, p.nombre_producto, p.precio, p.cantidad, c.nombre_cat, p.descripcion_producto
+  FROM producto p
+  INNER JOIN categoria c ON c.id_categoria = p.id_categoria
+  INNER JOIN ordenxproducto op ON op.id_producto = p.id_producto
+  WHERE op.id_orden = in_id_orden;
+END;
+
+
 --Funcion para filtrar los productos por precio y categoria                                                                 --FUNCION
 CREATE OR REPLACE
 FUNCTION fn_getProductosFitlrados 
@@ -386,13 +402,33 @@ END;
 
 
 
-SET SERVEROUTPUT ON
-call sp_postCompra(1,1,'2222 2222 4324 453252', 122);
+--Obtener compras por usuario
+create or replace
+PROCEDURE sp_getComprasCliente
+ (in_id IN orden.id_usuario%TYPE,
+ out_cursor_compras OUT SYS_REFCURSOR)
+AS
+BEGIN   
+  OPEN out_cursor_compras FOR
+  SELECT o.id_orden, o.fecha_orden, o.estado, o.detalles, f.monto
+  FROM orden o 
+  INNER JOIN factura f ON f.id_orden = o.id_orden
+  WHERE o.id_usuario = in_id;
+END;
 
+--Obtener compras 
+create or replace
+PROCEDURE sp_getCompras
+ (out_cursor_compras OUT SYS_REFCURSOR)
+AS
+BEGIN   
+  OPEN out_cursor_compras FOR
+  SELECT o.id_usuario ,o.id_orden, o.fecha_orden, o.estado, o.detalles, f.monto
+  FROM orden o 
+  INNER JOIN factura f ON f.id_orden = o.id_orden;
+END;
 
-
-
-
+ z
 
 
 

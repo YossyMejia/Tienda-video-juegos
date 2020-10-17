@@ -217,4 +217,35 @@ public class MetodosProductos {
         }
         return exito_operacion;
     }
+    
+    public ArrayList<Producto> getProductosOrden(int id_orden){
+        ArrayList<Producto> arreglo = new ArrayList();
+       try{
+            //INICIO SP
+            stmt = conn.prepareCall("{call  TIENDAGG.sp_getProductosOrden (?,?)}");
+            stmt.setInt(1, id_orden);
+            stmt.registerOutParameter(2, OracleTypes.CURSOR);
+            stmt.execute();
+            rs = (ResultSet) stmt.getObject(2);
+            while(rs.next()){
+                int id_producto = rs.getInt("id_producto");
+                String nombre = rs.getString("nombre_producto");
+                int precio = rs.getInt("precio");
+                int cantidad = rs.getInt("cantidad");
+                String nombre_cat = rs.getString("nombre_cat"); 
+                String descripcion_producto = rs.getString("descripcion_producto"); 
+                Producto producto = new Producto(id_producto, nombre, 
+                        descripcion_producto ,precio, cantidad, nombre_cat);
+               
+                arreglo.add(producto);
+            }
+            
+            stmt.close();
+            //FIN SP
+        }
+        catch(Exception e){ 
+            System.out.println("ERROR: No se puede completar la operacion "+e);
+        }
+        return arreglo;   
+    }
 }

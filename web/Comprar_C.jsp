@@ -30,8 +30,7 @@
         <div style="color: #FF0000;">${errorMessage}</div>
         <hr>
         <form action="./Comprar" method="post">
-                <%if(request.getAttribute("ListaDirecciones") != null &&
-                     request.getAttribute("ListaTarjetas") != null  ){ %> 
+                
                 <label for="direccion">Elije la direccion de envio </label><br>
                 <select name="cbx_direccion">
                          
@@ -57,10 +56,7 @@
                         <%}%>
                     
                  </select><br><br><br>
-                  <button class="btn-default" name="btn_comprar" value="comprar"/>Comprar</button>
-                <%}else {%>
-                    <label class="label-danger" for="error">Debe tener al menos una direccion y una tarjeta para realizar la compra! </label><br>
-                <% } %>
+            <button class="btn-default" name="btn_comprar" value="comprar"/>Comprar</button>
             <button class="btn-default" name="btn_atras" value="atras"/>Atras</button>
             </div><br><br>
         </form>

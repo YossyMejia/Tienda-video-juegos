@@ -8,12 +8,15 @@ package vistas;
 import controlador.Controlador;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Direccion;
+import modelo.Tarjeta;
 
 /**
  *
@@ -33,11 +36,19 @@ public class Carrito_Servlet extends HttpServlet {
             throws ServletException, IOException {
        if(request.getParameter("btn_comprar") != null){
            if(controlador.carritoVacio() == false){
-            request.setAttribute("ListaDirecciones", controlador.obtenerDirecciones());  
-            request.setAttribute("ListaTarjetas", controlador.obtenerTarjetas());
-            RequestDispatcher view = request.getRequestDispatcher("Comprar_C.jsp");
-            view.forward(request,response);
-            request.getRequestDispatcher("./Comprar_C.jsp").forward(request, response);
+            ArrayList<Direccion> listaDirecciones = controlador.obtenerDirecciones();
+            ArrayList<Tarjeta> listaTarjetas =  controlador.obtenerTarjetas();
+                if(listaDirecciones.isEmpty() || listaTarjetas.isEmpty()){
+                    request.setAttribute("errorMessage", "Debe tener al menos una direccion y una tarjeta para comprar");
+                    request.getRequestDispatcher("./Carrito_C.jsp").forward(request, response);
+                }
+                else{
+                    request.setAttribute("ListaDirecciones", listaDirecciones);  
+                    request.setAttribute("ListaTarjetas", listaTarjetas);
+                    RequestDispatcher view = request.getRequestDispatcher("Comprar_C.jsp");
+                    view.forward(request,response);
+                    request.getRequestDispatcher("./Comprar_C.jsp").forward(request, response);
+                }
            }
            else{
                request.setAttribute("errorMessage", "Debe tener al menos un producto para comprar");

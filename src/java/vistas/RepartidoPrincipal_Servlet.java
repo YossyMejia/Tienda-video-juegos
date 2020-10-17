@@ -19,33 +19,30 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author XPC
  */
-@WebServlet(name = "ClienteHistorial", urlPatterns = {"/ClienteHistorial"})
-public class ClienteHistorial_Servlet extends HttpServlet {
+@WebServlet(name = "RepartidoPrincipal", urlPatterns = {"/RepartidoPrincipal"})
+public class RepartidoPrincipal_Servlet extends HttpServlet {
+    
     private Controlador controlador = new Controlador();
    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
     }
 
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       if(request.getParameter("btn_atras") != null){
-           request.getRequestDispatcher("./Principal_C.jsp").forward(request, response);
-       }
-       else if(request.getParameter("idOrden") != null){
-           String id_str = request.getParameter("idOrden");
-           int id = Integer.parseInt(id_str);
-           request.setAttribute("Lista", controlador.obtenerProductosOrden(id));
-           RequestDispatcher view = request.getRequestDispatcher("DetalleOrden_C.jsp");
+       if(request.getParameter("btn_historial") != null){
+           request.setAttribute("Lista", controlador.obtenerCompras());
+           RequestDispatcher view = request.getRequestDispatcher("Historial_R.jsp");
            view.forward(request,response);
-           request.getRequestDispatcher("./DetalleOrden_C.jsp").forward(request, response);
+           request.getRequestDispatcher("./Historial_R.jsp").forward(request, response);
        }
-        request.getRequestDispatcher("./Historial_C.jsp").forward(request, response);
+       else if(request.getParameter("btn_salir") != null){
+           request.getRequestDispatcher("./index.jsp").forward(request, response);
+       }
+       request.getRequestDispatcher("./Principal_R.jsp").forward(request, response);
+        
     }
-    
 
 }
