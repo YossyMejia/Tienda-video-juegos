@@ -8,8 +8,12 @@ package modelo;
 import DB.ConnectionMDB;
 import DB.ConnectionORCL;
 import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
+import com.mongodb.Mongo;
+import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -34,15 +38,14 @@ public class MetodosProductos {
     CallableStatement stmt;
     Connection conn;
     ResultSet rs;
-    MongoCollection<Document> collection;
+    DBCollection collection;
+    Mongo mongoClient;
+    DB database;
     
     public MetodosProductos(){
         connectionObj = new ConnectionORCL();
         conn = connectionObj.getConnection();
-        ConnectionMDB mongo = new ConnectionMDB("productos");
-        collection = mongo.getCollection();
         rs = null;
-        
         
     }
     
@@ -64,14 +67,17 @@ public class MetodosProductos {
             stmt.execute();
             stmt.close();
             
-            Document producto = new Document("_id", new ObjectId());
-            producto.append("id_producto", codigo)
-                    .append("nombre_producto", nombre)
-                    .append("precio", precio)
-                    .append("cantidad", cantidad);
-            
-            collection.insertOne(producto);
-            
+            //Guardando en mongo
+            mongoClient = new Mongo("LocalHost",27017);
+            database = mongoClient.getDB("local");
+            collection = database.getCollection("productos");
+            BasicDBObject producto = new BasicDBObject("_id", new ObjectId());
+            producto.put("id_producto", codigo);
+            producto.put("nombre_producto", nombre);
+            producto.put("precio", precio);
+            producto.put("cantidad", cantidad);
+            collection.insert(producto);
+            mongoClient.close();
             exito_operacion = true;
             
             
@@ -191,6 +197,26 @@ public class MetodosProductos {
             stmt.close();
             exito_operacion = true;
             //FIN SP
+            
+            mongoClient = new Mongo("LocalHost",27017);
+            database = mongoClient.getDB("local");
+            collection = database.getCollection("productos");
+            
+            BasicDBObject query = new BasicDBObject();
+            query.put("id_producto", codigo);
+            
+            BasicDBObject newDocument = new BasicDBObject();
+            newDocument.put("nombre_producto", nombre); 
+            newDocument.put("precio", precio); 
+            newDocument.put("cantidad", cantidad); 
+            
+            BasicDBObject updateObject = new BasicDBObject();
+            updateObject.put("$set", newDocument);
+            
+            collection.update(query,updateObject);
+            mongoClient.close();
+            
+            
         }
         catch(Exception e){ 
             System.out.println("ERROR: No se puede completar la operacion "+e);
@@ -209,6 +235,12 @@ public class MetodosProductos {
             stmt.execute();
             stmt.close();
             exito_operacion = true;
+            
+            mongoClient = new Mongo("LocalHost",27017);
+            database = mongoClient.getDB("local");
+            collection = database.getCollection("productos");
+            collection.remove(new BasicDBObject("id_producto", codigo));
+            mongoClient.close();
             //FIN SP
         }
         catch(Exception e){ 

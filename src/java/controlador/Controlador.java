@@ -181,6 +181,12 @@ public class Controlador {
         return lista;
     }
     
+    public ArrayList<Solicitud> obtenerSolicitudUsuario(){                    //Funcion para obtener todas las consultas con sus respuestas
+        int id_usuario = usuarioAplicacion.getUser_id();
+        ArrayList<Solicitud> lista = metodosSolicitud.getSolicitudesSolucionesUsuario(id_usuario);
+        return lista;
+    }
+    
     public ArrayList<Producto> obtenerProducto(int id){
         ArrayList<Producto> lista = metodosProducto.getProductoDetalles(id);
         return lista;

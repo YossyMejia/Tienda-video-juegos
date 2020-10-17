@@ -274,6 +274,20 @@ BEGIN
 END;
 
 
+--Procedimento para obtener las soluciones que tienen respuestas de usuario
+create or replace
+PROCEDURE sp_getSolicitudesSoluciones
+ (in_idsolicitud IN solicitudtecnica.id_usuario%TYPE,
+ out_cursor_solicitudesSoluciones OUT SYS_REFCURSOR)
+AS
+BEGIN
+  OPEN out_cursor_solicitudesSoluciones FOR
+  SELECT s.id_solicitudTecnica, s.id_usuario, s.descripcion, so.id_tecnico, so.respuesta 
+  FROM solicitudTecnica s
+  INNER JOIN soluciontecnica so
+  ON s.id_solicitudtecnica = so.id_solicitud;
+END;
+
 --Obtener detalles de una solucion
 create or replace
 PROCEDURE sp_getSolicitudDetalle
@@ -428,7 +442,17 @@ BEGIN
   INNER JOIN factura f ON f.id_orden = o.id_orden;
 END;
 
- z
+ 
+--establecer una orden como entregada
+create or replace
+PROCEDURE sp_putOrdenEntregada
+ (in_id IN orden.id_orden%TYPE)
+AS
+BEGIN   
+  UPDATE orden SET estado = 'entregado'
+  WHERE id_orden = in_id;
+END;
+
 
 
 

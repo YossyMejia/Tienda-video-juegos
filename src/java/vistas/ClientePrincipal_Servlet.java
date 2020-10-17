@@ -62,6 +62,12 @@ public class ClientePrincipal_Servlet extends HttpServlet {
            view.forward(request,response);
            request.getRequestDispatcher("./Historial_C.jsp").forward(request, response);
        }
+       else if(request.getParameter("btn_soporte_ver") != null){
+           request.setAttribute("Lista", controlador.obtenerSolicitudUsuario());
+           RequestDispatcher view = request.getRequestDispatcher("Solicitudes_C.jsp");
+           view.forward(request,response);
+           request.getRequestDispatcher("./Solicitudes_C.jsp").forward(request, response);
+       }
        request.getRequestDispatcher("./Principal_C.jsp").forward(request, response);
         
     }

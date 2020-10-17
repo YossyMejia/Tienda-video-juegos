@@ -29,7 +29,8 @@ form {
             <button class="btn-default" name="btn_historial" value="Historial"/>Historial compras</button><br><br>
             <button class="btn-default" name="btn_tarjeta" value="Tarjeta"/>Ingresar tarjeta</button>
             <button class="btn-default" name="btn_direccion" value="Direccion"/>Ingresar direccion</button><br><br>
-            <button class="btn-default" name="btn_soporte" value="Soporte"/>Solicitar Soporte</button><br><br>
+            <button class="btn-default" name="btn_soporte" value="Soporte"/>Solicitar Soporte</button>
+            <button class="btn-default" name="btn_soporte_ver" value="Soporte"/>Ver solicitud soporte</button><br><br>
             <button class="btn-default btn-danger right" name="btn_salir" value="Salir"/>Salir</button>
         </form>
     </body>

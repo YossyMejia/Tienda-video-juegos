@@ -48,6 +48,8 @@ delete from producto where id_producto = 123129;
 
 
 select * from producto;
+DELETE FROM producto
+  WHERE nombre_producto = 'w';
 --Solicitud
 select * from solicitudtecnica
 
