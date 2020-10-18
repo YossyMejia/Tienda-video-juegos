@@ -23,9 +23,7 @@ public class MetodosTarjeta {
     ResultSet rs;
     
     public MetodosTarjeta(){
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+        
         
     }
     
@@ -35,7 +33,9 @@ public class MetodosTarjeta {
         boolean exito_operacion;
         try{
             //INICIO SP
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postTarjeta (?,?,?,?,?)}");
             stmt.setInt(1, id);
             stmt.setString(2, numero);
@@ -44,7 +44,9 @@ public class MetodosTarjeta {
             stmt.setInt(5, ccv);
             stmt.execute();
             stmt.close();
+            conn.close();
             exito_operacion = true;
+            
             //FIN SP
         }
         catch(Exception e){ 
@@ -58,6 +60,9 @@ public class MetodosTarjeta {
         ArrayList<Tarjeta> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getTarjetas (?,?)}");
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -74,6 +79,7 @@ public class MetodosTarjeta {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 

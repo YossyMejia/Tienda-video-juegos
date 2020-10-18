@@ -24,9 +24,7 @@ public class MetodosLogin {
     ResultSet rs;
     
     public MetodosLogin(){
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+        
         
     }
     
@@ -37,7 +35,9 @@ public class MetodosLogin {
         ArrayList<Login> arreglo = new ArrayList();
         try{
             //TODO llamar el sp que devuelve el usuario que hace match con los datos aqui.
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_LoginVerif (?,?,?)}");
             stmt.setString(1, user);
             stmt.setString(2, password);
@@ -49,6 +49,7 @@ public class MetodosLogin {
                 arreglo.add(loginBD);
             }
             stmt.close();
+            conn.close();
             
             //FIN SP
         }
@@ -63,7 +64,9 @@ public class MetodosLogin {
         ArrayList<Login> arreglo = new ArrayList();
         try{
             //INICIO SP
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_checkCorreo (?,?)}");
             stmt.setString(1, user);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -74,7 +77,7 @@ public class MetodosLogin {
                 arreglo.add(loginBD);
             }
             stmt.close();
-            
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 

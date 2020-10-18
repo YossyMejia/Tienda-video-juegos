@@ -27,7 +27,13 @@ public class ConnectionORCL {
         
     };
    
-    
+  public void openConnection() {
+       try{
+           
+       }
+       catch(Exception e){ System.out.println("ERROR: The connection can't be closed"+e);}
+   }  
+  
     
    public void closeConnection() {
        try{

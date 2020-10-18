@@ -27,17 +27,19 @@ public class MetodosCategoria {
     ResultSet rs;
 
     public MetodosCategoria() {
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+        
     }
+    
+    
     
     public boolean postCategoria(String nombre, String descripcion){
         
         boolean exito_operacion;
         try{
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             //TODO llamar el sp
-            
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postCategoria (?,?)}");
             stmt.setString(1, nombre);
             stmt.setString(2, descripcion);
@@ -45,6 +47,7 @@ public class MetodosCategoria {
             stmt.close();
             exito_operacion = true;
             //FIN SP
+            conn.close();
         }
         catch(Exception e){ 
             System.out.println("ERROR: No se puede completar la operacion "+e);
@@ -58,7 +61,9 @@ public class MetodosCategoria {
         ArrayList<Categoria> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getCategorias (?)}");
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.execute();
@@ -72,8 +77,8 @@ public class MetodosCategoria {
                 
                 arreglo.add(categoria);
             }
-            
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 

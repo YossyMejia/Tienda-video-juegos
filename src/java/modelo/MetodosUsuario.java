@@ -7,11 +7,16 @@ package modelo;
 
 
 import DB.ConnectionORCL;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
+import com.mongodb.Mongo;
 import java.util.ArrayList;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import oracle.jdbc.OracleTypes;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -23,22 +28,26 @@ public class MetodosUsuario {
     CallableStatement stmt;
     Connection conn;
     ResultSet rs;
+    DBCollection collection;
+    Mongo mongoClient;
+    DB database;
     
     public MetodosUsuario(){
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+        
         
     }
     
-    public boolean postUser(int id, String nombre, String apellido1, 
+    public boolean postUser(String imagen, int id, String nombre, String apellido1, 
                                      String apellido2, String tipo, String correo,
                                      String contrasena ){
         
         boolean exito_operacion;
         try{
             //INICIO SP
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
+            System.out.println(id+" "+nombre+" "+apellido1+" "+apellido2+" "+tipo+" "+correo+" "+contrasena);
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postUser (?,?,?,?,?,?,?)}");
             stmt.setInt(1, id);
             stmt.setString(2, nombre);
@@ -49,6 +58,18 @@ public class MetodosUsuario {
             stmt.setString(7, contrasena);
             stmt.execute();
             stmt.close();
+            conn.close();
+            
+             //Guardando en mongo
+            mongoClient = new Mongo("LocalHost",27017);
+            database = mongoClient.getDB("local");
+            collection = database.getCollection("usuario");
+            BasicDBObject usuario = new BasicDBObject("_id", new ObjectId());
+            usuario.put("id_usuario", id);
+            usuario.put("imagenPerfil", imagen);
+            collection.insert(usuario);
+            mongoClient.close();
+            
             exito_operacion = true;
             //FIN SP
         }
@@ -64,7 +85,9 @@ public class MetodosUsuario {
         ArrayList<Usuario> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getUser (?,?)}");
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -85,6 +108,8 @@ public class MetodosUsuario {
             }
             
             stmt.close();
+            conn.close();
+            
             //FIN SP
         }
         catch(Exception e){ 
@@ -98,7 +123,9 @@ public class MetodosUsuario {
         ArrayList<Usuario> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getUsers (?)}");
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.execute();
@@ -117,6 +144,7 @@ public class MetodosUsuario {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 

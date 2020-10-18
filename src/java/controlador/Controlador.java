@@ -81,9 +81,9 @@ public class Controlador {
     }
     
     
-    public boolean crearUsuario(int identificacion, String nombre, String primer_apellido, //Funcion para guardar un usuario en la BD
+    public boolean crearUsuario(String imagen, int identificacion, String nombre, String primer_apellido, //Funcion para guardar un usuario en la BD
             String segundo_apellido, String tipo, String correo, String contrasena){
-        boolean estado = metodosUsuario.postUser(identificacion, nombre, primer_apellido, 
+        boolean estado = metodosUsuario.postUser(imagen, identificacion, nombre, primer_apellido, 
                     segundo_apellido, tipo, correo, contrasena);
        return estado;
     }
@@ -95,9 +95,9 @@ public class Controlador {
     }
     
     
-    public boolean crearProducto(int id,String nombre,int precio,int cantidad,      //Funcion para crear un producto 
+    public boolean crearProducto(String imagen, int id,String nombre,int precio,int cantidad,      //Funcion para crear un producto 
         String descripcion,int categoria){
-        boolean estado = metodosProducto.postProducto(id, nombre, descripcion, precio, cantidad, categoria);
+        boolean estado = metodosProducto.postProducto(imagen, id, nombre, descripcion, precio, cantidad, categoria);
         return estado;
     }
     

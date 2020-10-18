@@ -276,16 +276,17 @@ END;
 
 --Procedimento para obtener las soluciones que tienen respuestas de usuario
 create or replace
-PROCEDURE sp_getSolicitudesSoluciones
- (in_idsolicitud IN solicitudtecnica.id_usuario%TYPE,
- out_cursor_solicitudesSoluciones OUT SYS_REFCURSOR)
+PROCEDURE sp_getSolicitudesSolucionesUsuario
+ (in_id IN solicitudTecnica.id_usuario%TYPE,
+ out_cursor_solicitudesSolucionesUsuario OUT SYS_REFCURSOR)
 AS
 BEGIN
-  OPEN out_cursor_solicitudesSoluciones FOR
+  OPEN out_cursor_solicitudesSolucionesUsuario FOR
   SELECT s.id_solicitudTecnica, s.id_usuario, s.descripcion, so.id_tecnico, so.respuesta 
   FROM solicitudTecnica s
   INNER JOIN soluciontecnica so
-  ON s.id_solicitudtecnica = so.id_solicitud;
+  ON s.id_solicitudtecnica = so.id_solicitud
+  WHERE s.id_usuario = in_id;
 END;
 
 --Obtener detalles de una solucion

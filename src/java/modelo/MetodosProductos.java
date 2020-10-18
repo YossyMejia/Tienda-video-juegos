@@ -43,20 +43,20 @@ public class MetodosProductos {
     DB database;
     
     public MetodosProductos(){
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+       
         
     }
     
-    public boolean postProducto(int codigo, String nombre, String descripcion, 
-                                     int precio, int cantidad, 
+    public boolean postProducto(String imagen, int codigo, String nombre, 
+                                     String descripcion, int precio, int cantidad, 
                                      int idCategoria){
         
         boolean exito_operacion;
         try{
+             connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             //INICIO SP
-            System.out.println(codigo+nombre+descripcion+precio+cantidad+idCategoria);
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postProducto (?,?,?,?,?,?)}");
             stmt.setInt(1, codigo);
             stmt.setString(2, nombre);
@@ -72,13 +72,17 @@ public class MetodosProductos {
             database = mongoClient.getDB("local");
             collection = database.getCollection("productos");
             BasicDBObject producto = new BasicDBObject("_id", new ObjectId());
+            producto.put("imagen", imagen);
             producto.put("id_producto", codigo);
             producto.put("nombre_producto", nombre);
             producto.put("precio", precio);
             producto.put("cantidad", cantidad);
             collection.insert(producto);
             mongoClient.close();
+            
+            conn.close();
             exito_operacion = true;
+            
             
             
             //FIN SP
@@ -94,7 +98,9 @@ public class MetodosProductos {
         ArrayList<Producto> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getProductos (?)}");
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.execute();
@@ -110,7 +116,9 @@ public class MetodosProductos {
                
                 arreglo.add(producto);
             }
+           
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -124,6 +132,9 @@ public class MetodosProductos {
         ArrayList<Producto> arreglo = new ArrayList();
         try{
             //INICIO SP
+             connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getProductoDetalles (?,?)}");
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -143,6 +154,7 @@ public class MetodosProductos {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -155,6 +167,9 @@ public class MetodosProductos {
         ArrayList<Producto> arreglo = new ArrayList();
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{? = call TIENDAGG.fn_getProductosFitlrados (?,?)}");
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.setInt(2, precioFiltro);
@@ -174,6 +189,7 @@ public class MetodosProductos {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -188,6 +204,9 @@ public class MetodosProductos {
         boolean exito_operacion;
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_putProducto (?,?,?,?)}");
             stmt.setInt(1, codigo);
             stmt.setString(2, nombre);
@@ -215,7 +234,7 @@ public class MetodosProductos {
             
             collection.update(query,updateObject);
             mongoClient.close();
-            
+            conn.close();
             
         }
         catch(Exception e){ 
@@ -230,6 +249,9 @@ public class MetodosProductos {
         boolean exito_operacion;
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_deleteProducto (?)}");
             stmt.setInt(1, codigo);
             stmt.execute();
@@ -241,6 +263,8 @@ public class MetodosProductos {
             collection = database.getCollection("productos");
             collection.remove(new BasicDBObject("id_producto", codigo));
             mongoClient.close();
+            conn.close();
+            
             //FIN SP
         }
         catch(Exception e){ 
@@ -254,6 +278,9 @@ public class MetodosProductos {
         ArrayList<Producto> arreglo = new ArrayList();
        try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getProductosOrden (?,?)}");
             stmt.setInt(1, id_orden);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -273,6 +300,7 @@ public class MetodosProductos {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 

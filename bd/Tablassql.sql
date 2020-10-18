@@ -163,10 +163,13 @@ CREATE TABLE login (
 
 ALTER TABLE login ADD CONSTRAINT login_pk PRIMARY KEY ( id_login );
 
+
 ALTER TABLE login
     ADD CONSTRAINT login_fk FOREIGN KEY ( id_usuario )
         REFERENCES usuario ( id_usuario );
 
+CREATE UNIQUE INDEX IN_LOGIN_CORREO
+on login (correo);
 
 --Tabla categoria
 CREATE TABLE categoria (
@@ -177,6 +180,8 @@ CREATE TABLE categoria (
 
 ALTER TABLE categoria ADD CONSTRAINT categoria_pk PRIMARY KEY ( id_categoria );
 
+CREATE UNIQUE INDEX IN_CATEGORIA_NOMBRE
+on categoria (nombre_cat);
 
 
 --Tabla producto
@@ -195,7 +200,9 @@ ALTER TABLE producto ADD CONSTRAINT producto_pk PRIMARY KEY ( id_producto );
 ALTER TABLE producto
     ADD CONSTRAINT productoxcategoria_fk FOREIGN KEY ( id_categoria )
         REFERENCES categoria ( id_categoria );
-        
+
+CREATE UNIQUE INDEX IN_PRODUCTO_NOMBRE_CATEGORIA
+on producto (nombre_producto, id_categoria);       
         
 --Tabla solicitud
 CREATE TABLE solicitudTecnica(

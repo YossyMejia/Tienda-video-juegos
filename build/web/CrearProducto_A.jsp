@@ -27,6 +27,8 @@ form {
         <div style="color: #FF0000;">${errorMessage}</div>
         <hr>
         <form action="./CrearProducto" method="post">
+            <label for="id">Imagen del producto: </label><br>
+            <input type="file" name="imagen"><br><br>
             <label for="id">Codigo producto (5 numeros): </label><br>
             <input class="label-default" type="text" name="id" id="id" required pattern="[0-9]{5}"><br><br><br>
             <label for="nombre">Nombre: </label><br>

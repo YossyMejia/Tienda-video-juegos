@@ -28,6 +28,8 @@ form {
         <hr>
         <form action="./Registro" method="post">
             <div style="color: #FF0000;">${errorMessage}</div>
+            <label for="id">Imagen de perfil: </label><br>
+            <input type="file" name="imagenPerfil"><br><br>
             <label for="nombre">Nombre: </label><br>
             <input  class="label-default" type="text" name="nombre" id="nombre" required><br><br><br>
             <label for="primer_apellido">Primer apellido: </label><br>

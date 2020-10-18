@@ -52,6 +52,7 @@ public class CrearProducto_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if(request.getParameter("idCategoria") != null){
+            String imagen = request.getParameter("imagen");
             String id_str = request.getParameter("id");
             String nombre = request.getParameter("nombre");
             String precio_str = request.getParameter("precio");
@@ -62,7 +63,7 @@ public class CrearProducto_Servlet extends HttpServlet {
             int precio = Integer.parseInt(precio_str);
             int cantidad = Integer.parseInt(cantidad_str);
             int categoria = Integer.parseInt(categoria_str);
-            boolean estadoTransaccion = controlador.crearProducto(id, nombre,
+            boolean estadoTransaccion = controlador.crearProducto(imagen, id, nombre,
                     precio, cantidad, descripcion, categoria);
             if(estadoTransaccion){
                 request.setAttribute("saveMessage", "Producto guardado con exito");

@@ -23,9 +23,7 @@ public class MetodosCompra {
     ResultSet rs;
     
     public MetodosCompra(){
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+        
         
     }
     
@@ -35,6 +33,9 @@ public class MetodosCompra {
         boolean exito_operacion;
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postCompra (?,?,?,?,?,?)}");
             stmt.setInt(1, usuario);
             stmt.setInt(2, direccion);
@@ -44,6 +45,7 @@ public class MetodosCompra {
             stmt.setString(6, tarjeta);
             stmt.execute();
             stmt.close();
+            conn.close();
             exito_operacion = true;
             //FIN SP
         }
@@ -58,6 +60,9 @@ public class MetodosCompra {
         ArrayList<Compra> arreglo = new ArrayList();
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getComprasCliente (?,?)}");
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -76,6 +81,7 @@ public class MetodosCompra {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -88,6 +94,9 @@ public class MetodosCompra {
         ArrayList<Compra> arreglo = new ArrayList();
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getCompras (?)}");
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.execute();
@@ -106,6 +115,7 @@ public class MetodosCompra {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -120,10 +130,14 @@ public class MetodosCompra {
         boolean exito_operacion;
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_putOrdenEntregada (?)}");
             stmt.setInt(1, id);
             stmt.execute();
             stmt.close();
+            conn.close();
             exito_operacion = true;
             //FIN SP
         }

@@ -26,6 +26,8 @@ form {
         <hr>
         <form action="./CrearUsuario" method="post">
             <div style="color: #FF0000;">${errorMessage}</div>
+            <label for="id">Imagen de perfil: </label><br>
+            <input type="file" name="imagenPerfil"><br><br>
             <label for="nombre">Nombre: </label><br>
             <input  class="label-default" type="text" name="nombre" id="nombre" required><br><br><br>
             <label for="primer_apellido">Primer apellido: </label><br>
@@ -40,7 +42,7 @@ form {
             <input class="label-default"  type="password" name="contrasena" id="contrasena" required><br><br><br><br>
             <div style="color: #008000;">${saveMessage}</div>
             <p>Selecciona el tipo de usuario:</p><br>
-            <input type="radio" id="Tecnico" name="tipo" value="Tecnico">
+            <input type="radio" id="Tecnico" name="tipo" value="Soporte Tecnico">
             <label for="tecnico">Tecnico</label><br>
             <input type="radio" id="Repartidor" name="tipo" value="Repartidor">
             <label for="repartidor">Repartidor</label><br>

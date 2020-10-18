@@ -23,9 +23,7 @@ public class MetodosDireccion {
     ResultSet rs;
     
     public MetodosDireccion(){
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+        
         
     }
     
@@ -35,7 +33,9 @@ public class MetodosDireccion {
         boolean exito_operacion;
         try{
             //INICIO SP
-            
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postDireccion (?,?,?,?,?)}");
             stmt.setString(1, provincia);
             stmt.setString(2, canton);
@@ -44,6 +44,7 @@ public class MetodosDireccion {
             stmt.setInt(5, id_usuario);
             stmt.execute();
             stmt.close();
+            conn.close();
             exito_operacion = true;
             //FIN SP
         }
@@ -58,6 +59,9 @@ public class MetodosDireccion {
         ArrayList<Direccion> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getDirecciones (?,?)}");
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -75,7 +79,7 @@ public class MetodosDireccion {
                
                 arreglo.add(direccion);
             }
-            
+            conn.close();
             stmt.close();
             //FIN SP
         }

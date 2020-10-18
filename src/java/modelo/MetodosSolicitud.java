@@ -22,9 +22,7 @@ public class MetodosSolicitud {
     ResultSet rs;
     
     public MetodosSolicitud(){
-        connectionObj = new ConnectionORCL();
-        conn = connectionObj.getConnection();
-        rs = null;
+        
     }
     
     public boolean postSolicitud(int id_usuario, String descripcion, String fecha_hora){
@@ -32,6 +30,9 @@ public class MetodosSolicitud {
         boolean exito_operacion;
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             System.out.println(id_usuario+" "+descripcion+" "+fecha_hora);
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postSolicitud (?,?,?)}");
             stmt.setInt(1, id_usuario);
@@ -39,6 +40,7 @@ public class MetodosSolicitud {
             stmt.setString(3, fecha_hora);
             stmt.execute();
             stmt.close();
+            conn.close();
             exito_operacion = true;
             //FIN SP
         }
@@ -55,6 +57,9 @@ public class MetodosSolicitud {
         boolean exito_operacion;
         try{
             //INICIO SP
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_postSolucion (?,?,?, ?)}");
             stmt.setInt(1, id_tecnico);
             stmt.setString(2, respuesta);
@@ -62,6 +67,7 @@ public class MetodosSolicitud {
             stmt.setInt(4, id_solicitud);
             stmt.execute();
             stmt.close();
+            conn.close();
             exito_operacion = true;
             //FIN SP
         }
@@ -76,6 +82,9 @@ public class MetodosSolicitud {
         ArrayList<Solicitud> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getSolicitudes (?)}");
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.execute();
@@ -91,6 +100,7 @@ public class MetodosSolicitud {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -104,6 +114,9 @@ public class MetodosSolicitud {
         ArrayList<Solicitud> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getSolicitudesSoluciones (?)}");
             stmt.registerOutParameter(1, OracleTypes.CURSOR);
             stmt.execute();
@@ -120,6 +133,7 @@ public class MetodosSolicitud {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -132,6 +146,9 @@ public class MetodosSolicitud {
         ArrayList<Solicitud> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getSolicitudesSolucionesUsuario (?,?)}");
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -149,6 +166,7 @@ public class MetodosSolicitud {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 
@@ -162,6 +180,9 @@ public class MetodosSolicitud {
         ArrayList<Solicitud> arreglo = new ArrayList();
         try{
             //TODO llamar el sp 
+            connectionObj = new ConnectionORCL();
+            conn = connectionObj.getConnection();
+            rs = null;
             stmt = conn.prepareCall("{call  TIENDAGG.sp_getSolicitudDetalle (?,?)}");
             stmt.setInt(1, id);
             stmt.registerOutParameter(2, OracleTypes.CURSOR);
@@ -181,6 +202,7 @@ public class MetodosSolicitud {
             }
             
             stmt.close();
+            conn.close();
             //FIN SP
         }
         catch(Exception e){ 

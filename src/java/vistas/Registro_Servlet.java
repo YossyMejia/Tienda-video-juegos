@@ -34,7 +34,7 @@ public class Registro_Servlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         if(request.getParameter("btn_registrarse") != null){
-            
+            String imagen = request.getParameter("imagenPerfil");
             String nombre = request.getParameter("nombre");
             String primer_apellido = request.getParameter("primer_apellido");
             String segundo_apellido = request.getParameter("segundo_apellido");
@@ -46,7 +46,7 @@ public class Registro_Servlet extends HttpServlet {
             
             boolean correoValido = controlador.correoValido(correo);
             if(correoValido){
-                boolean estadoTransaccion = controlador.crearUsuario(identificacion, nombre, primer_apellido, 
+                boolean estadoTransaccion = controlador.crearUsuario(imagen, identificacion, nombre, primer_apellido, 
                     segundo_apellido, tipo, correo, contrasena);
                 if(estadoTransaccion){
                     request.setAttribute("saveMessage", "Registro exitoso");
